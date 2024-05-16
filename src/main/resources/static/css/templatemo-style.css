@@ -201,52 +201,7 @@ http://www.templatemo.com/tm-516-known
   }
 
 
-
-  /*---------------------------------------
-       PRE LOADER              
-  -----------------------------------------*/
-
-  .preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 99999;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-    background: none repeat scroll 0 0 #ffffff;
-  }
-
-  .spinner {
-    border: 1px solid transparent;
-    border-radius: 3px;
-    position: relative;
-  }
-
-  .spinner:before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 45px;
-    height: 45px;
-    margin-top: -10px;
-    margin-left: -10px;
-    border-radius: 50%;
-    border: 1px solid #575757;
-    border-top-color: #ffffff;
-    animation: spinner .9s linear infinite;
-  }
-
-
-  @keyframes spinner {
-    to {transform: rotate(360deg);}
-  }
-
+ 
 
 
   /*---------------------------------------
@@ -486,140 +441,7 @@ http://www.templatemo.com/tm-516-known
     margin: 0;
   }
 
-
-  /*---------------------------------------
-      COURSES             
-  -----------------------------------------*/
-
-  #courses .section-title {
-    text-align: center;
-  }
-
-  #courses .owl-theme .owl-nav {
-    margin-top: 30px;
-  }
-
-  #courses .owl-theme .owl-nav [class*=owl-] {
-    border-radius: 2px;
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    padding: 0;
-  }
-
-  .courses-thumb {
-    background: #f9f9f9;
-    position: relative;
-  }
-
-  .courses-top {
-    position: relative;
-    width: 100%;
-  }
-
-  .courses-image .img-responsive{
-    background: linear-gradient(to right, #202020, #101010);
-    height: 30%;
-  }
-
-  .courses-date {
-    background: linear-gradient(rgba(255, 0, 0, 0), rgba(0, 0, 0, 0.6));
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    padding: 20px 25px;
-  }
-
-  .courses-date span,
-  .courses-author span {
-    font-size: 14px;
-    font-weight: bold;
-  }
-
-  .courses-date span {
-    color: #ffffff;
-    display: inline-block;
-    margin-right: 10px;
-  }
-
-  .courses-detail {
-    padding: 25px 25px 15px 25px;
-  }
-
-  .courses-detail h3 {
-    margin: 0 0 2px 0;
-  }
-
-  .courses-info {
-    border-top: 1px solid #f0f0f0;
-    position: relative;
-    clear: both;
-    padding: 15px 25px;
-  }
-
-  .courses-author,
-  .courses-author span {
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .courses-author img {
-    display: inline-block !important;
-    border-radius: 50px;
-    width: 50px !important;
-    height: 50px;
-    margin-right: 10px;
-  }
-
-  .courses-price {
-    float: right;
-    margin-top: 10px;
-  }
-
-  .courses-price span {
-    background: #29ca8e;
-    border-radius: 2px;
-    color: #ffffff;
-    display: block;
-    padding: 5px 10px;
-  }
-
-  .courses-price.free span {
-    background: #3f51b5;
-  }
-
-
-
-  /*---------------------------------------
-     NEWS              
-  -----------------------------------------*/
-
-  .news-thumb {
-    clear: both;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 30px;
-  }
-
-  .news-thumb .news-image {
-    float: left;
-    width: 40%;
-    margin-right: 30px;
-  }
-
-  .news-info h3 {
-    margin-top: 5px;
-    margin-bottom: 10px;
-  }
-
-  .news-date span {
-    color: #909090;
-    font-weight: bold;
-  }
-
-
+ 
 
   /*---------------------------------------
       TESTIMONIAL             
@@ -830,43 +652,9 @@ http://www.templatemo.com/tm-516-known
   }
 
 
-
-  /*---------------------------------------
-     SOCIAL ICON              
-  -----------------------------------------*/
-
-  .social-icon {
-    position: relative;
-    padding: 0;
-    margin: 0;
-  }
-
-  .social-icon li {
-    display: inline-block;
-    list-style: none;
-    margin-bottom: 5px;
-  }
-
-  .social-icon li a {
-    border-radius: 100px;
-    color: #29ca8e;
-    font-size: 15px;
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.4s ease-in-out;
-    position: relative;
-    margin: 5px 5px 5px 0;
-  }
-
-  .social-icon li a:hover {
-    background: #29ca8e;
-    color: #ffffff;
-  }
-
-
+ 
+ 
+ 
 
   /*---------------------------------------
      RESPONSIVE STYLES              

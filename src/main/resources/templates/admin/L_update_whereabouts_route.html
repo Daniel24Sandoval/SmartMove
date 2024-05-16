@@ -78,46 +78,52 @@
 	  		</div>
 	  		 
 			<!-- FORMULARIO DE CREACION: -->
-    <section>
-		
-        <div class="form-box">
-			
-            <div class="form-value">
-				
-                <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
-                    
-                    <div class="inputbox">
-                        <ion-icon name="text"></ion-icon>
-                        <input type="text" id="nombre" name="nombre" required>
-                        <label for="">Nombre</label>
-                    </div>
-                     <div class="inputbox">
-                        <ion-icon name="text"></ion-icon>
-                        <input type="text" id="apellido"  name="apellido" required>
-                        <label for="">Apellido</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" id="correo" name="correo" required>
-                        <label for="">Correo</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" id="password" name="password" required>
-                        <label for="">Contraseña</label>
-                        <input type="hidden" name="rol" value="User">
-                        <input type="hidden" name="estado" value="Activo">
-                        <input type="hidden" id="fechaC" name="fechaC" th:value="${T(java.time.LocalDate).now().toString()}" readonly>
+			<section>
+			    <div class="form-box">
+			        <div class="form-value">
+			            <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
+			                
+			                <!-- Input para el ID -->
+							<div class="inputbox">
+							    <!-- Icono de una llave para representar un ID -->
+							    <ion-icon name="key"></ion-icon>
+							    <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
+							    <input type="text" id="nombre" name="id" placeholder="ID " readonly required>
+							    <!-- Agregar una etiqueta descriptiva -->
+							    <label for="nombre">ID</label>
+							</div>
 
-                    </div>
+			                <!-- Input para el Nombre del Paradero -->
+			                <div class="inputbox">
+			                    <ion-icon name="bus"></ion-icon>
+			                    <input type="text" id="nombreParadero" name="nombreParadero" required>
+			                    <label for="nombreParadero">Nombre del Paradero</label>
+			                </div>
 
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                     	
-                </form>
-            </div>
-        </div>
-    </section>
-    
+			                <!-- Input para el Código de Ruta -->
+ 
+							<div class="inputbox">
+								    <!-- Icono de una llave para representar un ID -->
+								    <ion-icon name="barcode"></ion-icon>
+								    <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
+								    <input type="" id="codigoRuta" name="codigoRuta" placeholder="Codigo de Ruta "      >
+								    <!-- Agregar una etiqueta descriptiva -->
+								    <label for="nombre">Código de Ruta</label>
+								</div>
+			                <!-- Input para la URL de Ubicación -->
+			                <div class="inputbox">
+			                    <ion-icon name="globe-outline"></ion-icon>
+			                    <input type="text" id="urlUbicacion" name="urlUbicacion" required>
+			                    <label for="urlUbicacion">URL de Ubicación</label>
+			                </div>
+
+			                <!-- Eliminamos los campos anteriores (Nombre, Apellido, Correo, Contraseña) -->
+
+			                <button type="submit" class="btn btn-success">Actualizar</button>
+			            </form>
+			        </div>
+			    </div>
+			</section>
 
      <!-- FOOTER -->
 

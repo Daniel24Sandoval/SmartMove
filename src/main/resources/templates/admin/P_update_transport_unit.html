@@ -78,45 +78,49 @@
 	  		</div>
 	  		 
 			<!-- FORMULARIO DE CREACION: -->
-    <section>
-		
-        <div class="form-box">
-			
-            <div class="form-value">
-				
-                <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
-                    
-                    <div class="inputbox">
-                        <ion-icon name="text"></ion-icon>
-                        <input type="text" id="nombre" name="nombre" required>
-                        <label for="">Nombre</label>
-                    </div>
-                     <div class="inputbox">
-                        <ion-icon name="text"></ion-icon>
-                        <input type="text" id="apellido"  name="apellido" required>
-                        <label for="">Apellido</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" id="correo" name="correo" required>
-                        <label for="">Correo</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" id="password" name="password" required>
-                        <label for="">Contraseña</label>
-                        <input type="hidden" name="rol" value="User">
-                        <input type="hidden" name="estado" value="Activo">
-                        <input type="hidden" id="fechaC" name="fechaC" th:value="${T(java.time.LocalDate).now().toString()}" readonly>
+			<section>
+			    <div class="form-box">
+			        <div class="form-value">
+			            <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
+			                
+			                <!-- Input para el ID -->
+							<div class="inputbox">
+							    <!-- Icono de una llave para representar un ID -->
+							    <ion-icon name="key"></ion-icon>
+							    <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
+							    <input type="text" id="nombre" name="id" placeholder="ID de la empresa" readonly required>
+							    <!-- Agregar una etiqueta descriptiva -->
+							    <label for="nombre">ID</label>
+							</div>
+			                
+			                <!-- Input para el Nombre -->
+			                <div class="inputbox">
+			                    <ion-icon name="text"></ion-icon>
+			                    <input type="text" id="nombre" name="nombre" required>
+			                    <label for="nombre">Nombre</label>
+			                </div>
+			                
+			                <!-- Input para la Placa Vehicular -->
+			                <div class="inputbox">
+			                    <ion-icon name="car"></ion-icon>
+			                    <input type="text" id="placa" name="placa" required>
+			                    <label for="placa">Placa Vehicular</label>
+			                </div>
+			                
+			                <!-- Input para el Código de Ruta -->
+			                <div class="inputbox">
+			                    <ion-icon name="barcode"></ion-icon>
+			                    <input type="text" id="codigo" name="codigo" required>
+			                    <label for="codigo">Código de Ruta</label>
+			                </div>
 
-                    </div>
+			                <!-- Botón para guardar -->
+			                <button type="submit" class="btn btn-success">Actualizar</button>
+			            </form>
+			        </div>
+			    </div>
+			</section>
 
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                     	
-                </form>
-            </div>
-        </div>
-    </section>
     
 
      <!-- FOOTER -->

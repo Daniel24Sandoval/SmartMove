@@ -9,13 +9,11 @@
      <meta name="keywords" content="">
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	 <!-- Latest compiled and minified CSS -->
+ 	 <!-- Latest compiled and minified CSS -->
 	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	 <!-- Optional theme -->
 	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
- 
  
 	  <!-- CSS -->
       <link rel="stylesheet" th:href="@{../css/templatemo-style.css}">
@@ -30,8 +28,6 @@
 
      <!-- Listar_Servicios de Tranporte -->
  
- 
-
 	 		<div class="container-fluid">
 		
 	             <ul class="nav nav-tabs nav-justified"  style="font-size: 17px;">
@@ -86,7 +82,7 @@
 	 		  <div class="input-group-prepend">
 	 			<span class="input-group-text" id="basic-addon1"></span>
 	 		  </div>
-	 		  <input id="FiltrarContenido" type="text" class="form-control" placeholder="Buscar alumnos..." aria-label="Alumnos" aria-describedby="basic-addon1"> 
+	 		  <input id="FiltrarContenido" type="text" class="form-control" placeholder="Buscar..." aria-label="Alumnos" aria-describedby="basic-addon1"> 
 	 		</div>
 	 		
 	             <div class="div-table">
@@ -94,64 +90,33 @@
 	                         <thead>
 	                           <tr>
 	                                                         <th>N*</th>
-	                                                          <th>ID Alumno</th>
-	 							<th>Nombres y Apellidos</th>
-	                                                            <th>Correo</th> 
-	                                                            <th>Rol</th>
-	                                                            <th>Grado</th>
-	                                                             <th>Fecha Creacion</th>
-	                                                              <th>Estado</th>
-	                                                               <th>Acciones  </th>
-
+	                                                          <th>ID</th>
+	 															<th>Nombre</th>
+	                                                            <th>Descripcion</th> 
+	                                                             
+	                                                             <th>Eliminar</th>
+	                                                              <th>Actualizar</th>
+ 
 	                    
 	                           </tr>
 	                         </thead>
 	                         <tbody class="BusquedaRapida">
 	            
 	                         <form name="form-edit" action=".." method="post"> <tr>
-	                                <th scope="row">cantidad_user</th>
-	                               <td> id</td>
-	                               <td> nombre completo</td>                             
+	                                  <th scope="row">cantidad_user</th>
+	                                  <td> id</td>
+	                                  <td> nombre completo</td>                             
 	                                  <td>correo</td>	
-	                                  <td>rol </td>
-	                                  <td>grado </td>
-	                                  <td>ads</td>
-	                                  
-	                                  
-	                                      <td>   
-	    
-	                                                         <form  action="post"   > 
-	                                                             
-	 <a href="${pageContext.request.contextPath}/Controlador?accion=CambiarEstadoALUA&idd=<%=ALU.getIDALUMMNO()%>"type="submit" class="btn btn-success btn-xs ">Activo</a>
-	 							
-	                                                          
-	 						  </form>
-	                                          
-	                                                     
-	                                          </td> 
-	                                  
-
 	                                  
 	                                  <td>
-	                                      
- 	 			
-	                         
-	 			 
-	                 <a  	href="${pageContext.request.contextPath}/Controlador?accion=Borrar&id=<%=ALU.getIDALUMMNO()%>"  title="Eliminar" data-backdrop="false" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span></a>
-	                        
+	                                  <a href="${pageContext.request.contextPath}/Controlador?accion=Borrar&id=<%=ALU.getIDALUMMNO()%>"  title="Eliminar" data-backdrop="false" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span></a>
+	 				                  </td>
+						              <td>
+						   			<a th:href="@{C_update_transport_service}" title="Actualizar" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>				 	
 
-	 					 
- 	 				 
-	 				<a th:href="@{C_update_transport_service}" title="Actualizar" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>				 	
-	 					</td>
-	                                  
-	                                  
-	                                  
-	                              
-	                           		
+									</td>                		
 	                               </tr>
-	                          
-	                               
+ 
 	                                  </form>
 	                         </tbody>
 	 						
@@ -170,6 +135,8 @@
      <!-- SCRIPTS -->
  
 	 <!-- SCRIPTS FILTRO -->
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 	 	<script type="text/javascript">
 	 $(document).ready(function () {
 	    (function($) {

@@ -84,36 +84,63 @@
 			
             <div class="form-value">
 				
-                <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
-                    
-                    <div class="inputbox">
-                        <ion-icon name="text"></ion-icon>
-                        <input type="text" id="nombre" name="nombre" required>
-                        <label for="">Nombre</label>
-                    </div>
-                     <div class="inputbox">
-                        <ion-icon name="text"></ion-icon>
-                        <input type="text" id="apellido"  name="apellido" required>
-                        <label for="">Apellido</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" id="correo" name="correo" required>
-                        <label for="">Correo</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" id="password" name="password" required>
-                        <label for="">Contraseña</label>
-                        <input type="hidden" name="rol" value="User">
-                        <input type="hidden" name="estado" value="Activo">
-                        <input type="hidden" id="fechaC" name="fechaC" th:value="${T(java.time.LocalDate).now().toString()}" readonly>
+				<form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
+ 
+				    <div class="inputbox">
+				        <!-- Icono de una línea de código -->
+				        <ion-icon name="code"></ion-icon>
+				        <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
+				        <input type="text" id="codigo" name="codigo"  required>
+				        <!-- Agregar una etiqueta descriptiva -->
+				        <label for="codigo">Código de línea</label>
+				    </div>
+				    <div class="inputbox">
+				        <!-- Icono de un punto de origen -->
+				        <ion-icon name="locate"></ion-icon>
+				        <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
+				        <input type="text" id="origen"  name="origen" required>
+				        <!-- Agregar una etiqueta descriptiva -->
+				        <label for="origen">Origen</label>
+				    </div>
+				    <div class="inputbox">
+				        <!-- Icono de un destino -->
+				        <ion-icon name="navigate"></ion-icon>
+				        <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
+				        <input type="text" id="destino" name="destino" required >
+				        <!-- Agregar una etiqueta descriptiva -->
+				        <label for="destino">Destino</label>
+				    </div>
+ 
+					<div class="inputbox">
+					    <!-- Agregar una etiqueta descriptiva -->
+ 
 
-                    </div>
+					    <label for="id">Empresa de Transporte</label> 
+					    <!-- Icono de un camión para representar una empresa de transporte -->
+					    <ion-icon name="bus"></ion-icon>
+					    <!-- Input oculto para enviar el ID seleccionado -->
+					    <input type="hidden" name="id" required>
+					    <!-- Combobox para seleccionar la empresa de transporte -->
+					    <br><br><select name="nombreEmpresa" required style="width: 100%;" onchange="this.previousElementSibling.value=this.value;">
+					        <option value="" disabled selected>Selecciona una empresa de transporte</option>
+					        <!-- Agregar opciones para cada empresa de transporte -->
+					        <option value="empresa1">Empresa 1</option>
+					        <option value="empresa2">Empresa 2</option>
+					        <option value="empresa3">Empresa 3</option>
+					        <!-- Añade más opciones según sea necesario -->
+					    </select>
+						
+					</div>
 
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                     	
-                </form>
+					<div class="inputbox">
+					    <!-- Icono de un enlace para representar una URL -->
+					    <ion-icon name="link"></ion-icon>
+					    <input type="url" id="urlRuta" name="urlRuta"  required>
+					    <label for="urlRuta">URL de la ruta</label>
+					</div>
+				    <button type="submit" class="btn btn-success">Guardar</button> 	
+				</form>
+
             </div>
         </div>
     </section>

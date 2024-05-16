@@ -48,7 +48,7 @@
 	 					<img src="../img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
 	 		         </div>
 	 		         <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
-	 		             Bienvenido a la sección para actualizar un Servicio de Transporte, debes de llenar todos los campos del siguiente formulario para poder registrarlo.
+	 		             Bienvenido a la sección para actualizar una Empresa de Transporte, debes de llenar todos los campos del siguiente formulario para poder registrarlo.
 	 		         </div>
 	 		     </div>
 	 		 </div>
@@ -61,7 +61,7 @@
 	  				<ol class="breadcrumb">
 	  				  <li class="active"></li>&nbsp;&nbsp;
 	  				 
-	  				 <a th:href="@{A_list_transport_service}">Listado de ST</a>
+	  				 <a th:href="@{D_list_transport_company}">Listado de ET</a>
 	  				 
 	  				 
 	  				</ol>
@@ -85,31 +85,46 @@
             <div class="form-value">
 				
                 <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
-                    
+					<div class="inputbox">
+					    <!-- Icono de una llave para representar un ID -->
+					    <ion-icon name="key"></ion-icon>
+					    <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
+					    <input type="text" id="nombre" name="id" placeholder="ID de la empresa" readonly required>
+					    <!-- Agregar una etiqueta descriptiva -->
+					    <label for="nombre">ID</label>
+					</div>
+
                     <div class="inputbox">
                         <ion-icon name="text"></ion-icon>
                         <input type="text" id="nombre" name="nombre" required>
-                        <label for="">Nombre</label>
+                        <label for="">Nombre de Empresa</label>
                     </div>
                      <div class="inputbox">
                         <ion-icon name="text"></ion-icon>
                         <input type="text" id="apellido"  name="apellido" required>
-                        <label for="">Apellido</label>
+                        <label for="">Descripcion</label>
                     </div>
                     <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
+						<ion-icon name="card-outline"></ion-icon>
                         <input type="email" id="correo" name="correo" required>
-                        <label for="">Correo</label>
+                        <label for="">RUC</label>
                     </div>
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" id="password" name="password" required>
-                        <label for="">Contraseña</label>
-                        <input type="hidden" name="rol" value="User">
-                        <input type="hidden" name="estado" value="Activo">
-                        <input type="hidden" id="fechaC" name="fechaC" th:value="${T(java.time.LocalDate).now().toString()}" readonly>
-
-                    </div>
+					
+					<div class="inputbox">
+					    <!-- Icono dependiendo de la opción seleccionada -->
+						
+ 					    <!-- Combo box con tres opciones -->
+						
+					    <select id="nombre" name="id" required>
+					        <option value="" disabled selected>Selecciona una opción</option>
+					        <option value="tpublico">Transporte Público</option>
+					        <option value="metropolitano">Metropolitano</option>
+					        <option value="tren">Tren</option>
+					        <option value="tprivado">Transporte Privado</option>
+					    </select>
+					    <!-- Etiqueta descriptiva -->
+					    <label for="nombre">Tipo de Servicio</label>
+					</div>
 
                     <button type="submit" class="btn btn-success">Guardar</button>
                      	
