@@ -1,0 +1,489 @@
+    
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+       
+     <title>Sistema de Rendimiento Escolar</title>
+        <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+     <link rel="stylesheet" th:href="@{css/font-awesome.min.css}">
+     <link rel="stylesheet" th:href="@{css/owl.carousel.css}">
+     <link rel="stylesheet" th:href="@{css/owl.theme.default.min.css}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
+      <!-- CSS -->
+      <link rel="stylesheet" th:href="@{css/templatemo-style.css}">
+      
+    </head>
+    <body>
+         <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+               
+          </div>
+     </section>
+
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+
+				   <!-- lOGO TEXT HERE -->
+				<img src="img/Fondo Claro.png" alt="Logo" style="max-height: 100px; max-width: 100px;">
+
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="#top" class="smoothScroll">INICIO</a></li>
+                         <li><a href="#about" class="smoothScroll">BENEFICIOS</a></li>
+ 
+                         <li><a href="#testimonial" class="smoothScroll">RESEÑAS</a></li>
+						 <li><a href="#contact" class="smoothScroll">CONTACTANOS</a></li>
+                         <li><a th:href="@{user/login}" class="smoothScroll">INICIAR SESION</a></li>
+                    </ul> 
+               </div>
+          </div>
+     </section>
+
+
+     <!-- HOME -->
+     <section id="home">
+          <div class="row">
+                    <div class="owl-carousel owl-theme home-slider">
+                         <div class="item item-first">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-6 col-sm-12">
+                                             <h1>Bienvenido a nuestro Sistema Web de Transporte</h1>
+                                             <h3> 
+												Nuestra plataforma te ofrece una experiencia de transporte personalizada y eficiente, utilizando algoritmos avanzados que consideran factores como el tráfico en tiempo real, la ocupación del transporte público, las condiciones climáticas y eventos especiales
+                                             </h3>
+                                             <a href="#feature" class="section-btn btn btn-default smoothScroll">Saber más</a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+ 
+
+                     
+                    </div>
+          </div>
+     </section>
+
+
+     <!-- FEATURE -->
+     <section id="feature">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="feature-thumb"> 
+                            <div class="logotaller">
+                                <img th:src="@{img/img_beneficio.jpg}" class="img-responsive" alt="">
+                            </div>
+                              <span>01</span>
+                              <h3>Beneficios para los usuarios</h3>
+                              <p>Nuestra plataforma te ofrece una experiencia de transporte personalizada y eficiente, utilizando algoritmos avanzados que consideran factores como el tráfico en tiempo real, la ocupación del transporte público, las condiciones climáticas y eventos especiales.</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="feature-thumb">
+                            <div class="logotaller">
+                                <img th:src="@{img/img_soste.png}" class="img-responsive" alt="">
+                            </div>
+                              <span>02</span>
+                              <h3>Enfoque en la sostenibilidad</h3>
+                              <p>Nos comprometemos con el medio ambiente y la sostenibilidad, promoviendo activamente el uso eficiente de los recursos de transporte y fomentando opciones como el transporte público y compartido.</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="feature-thumb">
+                            <div class="logotaller">
+                                <img th:src="@{img/img_funct.jpeg}" class="img-responsive" alt="">
+                            </div>
+                              <span>03</span>
+                              <h3>Funciones destacadas</h3>
+                              <p>Explora una variedad de opciones de transporte, desde transporte público hasta ridesharing y bicicletas compartidas, todo integrado en una interfaz intuitiva y fácil de usar.</p>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- ABOUT -->
+     <section id="about">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="about-info">
+                              <h2>SMART MOVE</h2>
+
+                              <figure>
+                                   <span><i class="fa fa-users"></i></span>
+                                   <figcaption>
+                                        <h3>Personalización</h3>
+                                        <p>Personaliza tus preferencias de ruta; permite disfrutar de viajes adaptados a tus necesidades individuales y garantizando comodidad.</p>
+                                   </figcaption>
+                              </figure>
+
+                              <figure>
+                                   <span><i class="fa fa-certificate"></i></span>
+                                   <figcaption>
+                                        <h3>Notificaciones en tiempo real</h3>
+                                        <p>Recibe notificaciones en tiempo real sobre eventos relevantes que puedan afectar tu viaje, manteniéndote siempre informado y preparado..</p>
+                                   </figcaption>
+                              </figure>
+
+                              <figure>
+                                   <span><i class="fa fa-bar-chart-o"></i></span>
+                                   <figcaption>
+                                        <h3>Compromiso con la comunidad </h3>
+                                        <p>Contribuimos activamente a la creación de comunidades más sostenibles y habitables para todos.</p>
+                                   </figcaption>
+                              </figure>
+	 
+                         </div>
+                    </div>
+
+                    <div class="col-md-offset-1 col-md-4 col-sm-12">
+                         <div class="entry-form">
+                              <form action="#" method="post">
+                                   <h2>Únete a nosotros y mejora tu experiencia de transporte diario.  </h2>
+                                    
+
+                                   <button class="submit-btn form-control" id="form-submit">¡Comienza ahora mismo!.</button>
+                              </form>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- TEAM -->
+     <section id="team">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title">
+                              <h2>Desarrolladores<small>Encargados del Desarrollo de la Pagina Web</small></h2>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb">
+                              <div class="team-image">
+                                  <img src="../assets/img/enrique.jpg" class="img-responsive" alt="">
+                              </div>
+                              <div class="team-info">
+                                   <h3>Enrique</h3>
+                                   <span>Jefe de proyecto</span>
+                              </div>
+                              <!--<ul class="social-icon">
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-envelope-o"></a></li>
+                                   <li><a href="#" class="fa fa-linkedin"></a></li>
+                              </ul>-->
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb">
+                              <div class="team-image">
+                                   <img src="../assets/img/cristian.jpeg" class="img-responsive" alt="">
+                              </div>
+                              <div class="team-info">
+                                   <h3>Cristian</h3>
+                                   <span>Programador tecnico</span>
+                              </div>
+                              <!--<ul class="social-icon">
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-envelope-o"></a></li>
+                                   <li><a href="#" class="fa fa-linkedin"></a></li>
+                              </ul>-->
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb">
+                              <div class="team-image">
+                                  <img src="../assets/img/josé.jpg" class="img-responsive" alt="">
+                              </div>
+                              <div class="team-info">
+                                   <h3>Jose</h3>
+                                   <span>Director tecnico</span>
+                              </div>
+                              <!--<ul class="social-icon">
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-envelope-o"></a></li>
+                                   <li><a href="#" class="fa fa-linkedin"></a></li>
+                              </ul>-->
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb">
+                              <div class="team-image">
+                                  <img src="../assets/img/omar" class="img-responsive" alt="">
+                              </div>
+                              <div class="team-info">
+                                   <h3>Omar</h3>
+                                   <span>Lider QA</span>
+                              </div>
+                              <!--<ul class="social-icon">
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-google"></a></li>
+                                   <li><a href="#" class="fa fa-behance"></a></li>
+                              </ul>-->
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- Courses -->
+ 
+
+
+     <!-- TESTIMONIAL -->
+     <section id="testimonial">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title">
+                              <h2>Reseña <small>Beneficiados con el Programa</small></h2>
+                         </div>
+
+                         <div class="owl-carousel owl-theme owl-client">
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="tst-image">
+                                             <img src="img/grupo.png" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="tst-author">
+                                             <h4>Juan López</h4>
+                                             <span>Profesional de negocios</span>
+                                        </div>
+                                        <p>Como alguien que trabaja en el mundo de los negocios, cada minuto cuenta. Este sistema web de transporte ha sido una verdadera bendición para mí. </p>
+                                        <div class="tst-rating">
+											<i class="fa fa-star"></i>
+											                                             <i class="fa fa-star"></i>
+											                                             <i class="fa fa-star"></i>
+											                                             <i class="fa fa-star"></i>
+																						 <i class="fa fa-star"></i>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="tst-image">
+											<img src="img/grupo.png" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="tst-author">
+                                             <h4>María García</h4>
+                                             <span>Estudiante universitaria</span>
+                                        </div>
+                                        <p>"¡Increíblemente útil! Como estudiante universitaria, necesito llegar a clase a tiempo y mi horario siempre está ajustado.  </p>
+                                        <div class="tst-rating">
+											<i class="fa fa-star"></i>
+											                                             <i class="fa fa-star"></i>
+											                                             <i class="fa fa-star"></i>
+											                                             <i class="fa fa-star"></i>
+																						 <i class="fa fa-star"></i>
+																						 <i class="fa fa-star"></i>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="tst-image">
+											<img src="img/grupo.png" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="tst-author">
+                                             <h4>Laura Martínez</h4>
+                                             <span>Madre a tiempo completo</span>
+                                        </div>
+                                        <p>¡Excelente ayuda para mamás ocupadas como yo! Con tres hijos y una agenda llena de actividades, encontrar la mejor manera de desplazarnos puede ser todo un desafío. .</p>
+                                        <div class="tst-rating">
+											<i class="fa fa-star"></i>
+											                                             <i class="fa fa-star"></i>
+											                                             <i class="fa fa-star"></i>
+											                                             <i class="fa fa-star"></i>
+																						 <i class="fa fa-star"></i>
+																						 <i class="fa fa-star"></i>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="tst-image">
+											<img src="img/grupo.png" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="tst-author">
+                                             <h4>Carlos Rodríguez</h4>
+                                             <span>Emprendedor</span>
+                                        </div>
+                                        <p>Como empresario, mi día está lleno de reuniones y compromisos. Este sistema web de transporte ha sido una verdadera salvación para mí. </p>
+                                        <div class="tst-rating">
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+											 <i class="fa fa-star"></i>
+                                        </div>
+                                   </div>
+                              </div>
+
+                         </div>
+
+               </div>
+          </div>
+     </section> 
+
+
+     <!-- CONTACT -->
+     <section id="contact">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                         <form id="contact-form" role="form" action="" method="post">
+                              <div class="section-title">
+                                   <h2>Contactanos <small>Nos encantan las conversaciones. ¡Dejanos contactarnos con usted!</small></h2>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12">
+                                   <input type="text" class="form-control" placeholder="Nombres y Apellidos" name="name" required="">
+                    
+                                   <input type="email" class="form-control" placeholder="Email" name="email" required="">
+
+                                   <textarea class="form-control" rows="6" placeholder="Cuéntanos sobre el mensaje" name="message" required=""></textarea>
+                              </div>
+
+                              <div class="col-md-4 col-sm-12">
+                                   <input type="submit" class="form-control" name="Enviar mensaje" value="Send Message">
+                              </div>
+
+                         </form>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="contact-image">
+                             <img src="../assets/img/contactanos.jpg" class="img-responsive" alt="Smiling Two Girls">
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>       
+
+
+     <!-- FOOTER -->
+     <footer id="footer">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>Sedes</h2>
+                              </div>
+                              <address>
+                                   <p>1800 dapibus a tortor pretium,<br> Integer nisl dui, ABC 12000</p>
+                              </address>
+
+                              <ul class="social-icon">
+                                
+                              </ul>
+
+                              <div class="copyright-text"> 
+                                   <p>Copyright &copy; 2018 Company</p>
+                                   <p>Design: <a rel="nofollow" href="http://templatemo.com" title="html5 templates" target="_parent">Template Mo</a></p>
+                                   <p>Distribution: <a href="https://themewagon.com/">ThemeWagon</a></p>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>Contactos</h2>
+                              </div>
+                              <address>
+                                   <p>+65 2244 1100, +66 1800 1100</p>
+                                   <p><a href="mailto:youremail.com">hello@youremail.co</a></p>
+                              </address>
+
+                              <div class="footer_menu">
+                                   <h2>Enlaces Rápidas</h2>
+                                   <ul>
+                                        <li><a href="#">Career</a></li>
+                                        <li><a href="#">Investor</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                        <li><a href="#">Refund Policy</a></li>
+                                   </ul>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                         <div class="footer-info newsletter-form">
+                              <div class="section-title">
+                                   <h2>Inscríbase al boletín</h2>
+                              </div>
+                              <div>
+                                   <div class="form-group">
+                                        <form action="#" method="get">
+                                             <input type="email" class="form-control" placeholder="Introduce tu correo electrónico" name="email" id="email" required="">
+                                             <input type="submit" class="form-control" name="submit" id="form-submit" value="Enviar">
+                                        </form>
+                                        <span><sup>*</sup> Tenga en cuenta que  no enviamos spam a su correo electrónico.</span>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+
+     <!-- SCRIPTS -->
+     <script th:src="@{js/jquery.js}"></script>
+     <script th:src="@{js/bootstrap.min.js}"></script>
+     <script th:src="@{js/owl.carousel.min.js}"></script>
+     <script th:src="@{js/smoothscroll.js}"></script>
+     <script th:src="@{js/custom.js}"></script>
+    </body>
+</html>

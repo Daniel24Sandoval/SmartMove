@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+
+body{
+    background: url('../img/fondoia1.jpg')no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* negro con opacidad del 50% */
+    z-index: -1; /* colocar detrás del contenido */
+}
+.logo img{
+    position: relative;
+    margin-top: 10px;
+    margin-left: 120px;
+    width: 160px	; /* Establece el ancho del logo en 125 píxeles */
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    
+}
+.form-box{
+    position: relative;
+    width: 400px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ margin-top: -250px;
+}
+h2{
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff;
+}
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1em;
+    pointer-events: none;
+    transition: .5s;
+}
+input:focus ~ label,
+input:valid ~ label{
+top: -5px;
+}
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding:0 35px 0 5px;
+    color: #fff;
+}
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2em;
+    top: 20px;
+}
+.forget{
+    margin: -15px 0 15px ;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;  
+}
+
+.forget label input{
+    margin-right: 3px;
+    
+}
+.forget label a{
+    color: #fff;
+    text-decoration: none;
+}
+.forget label a:hover{
+    text-decoration: underline;
+}
+button{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+.register{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.register p a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+.register p a:hover{
+    text-decoration: underline;
+}
+
+
+
+.sweataler2 {
+position: relative;
+padding: 1.25rem 1.5rem;
+margin-bottom: 1rem;
+border: 1px solid transparent;
+border-radius: 0.25rem;
+transition: transform 0.3s ease-in-out;
+}
+
+.sweataler2-heading {
+margin-top: 0;
+margin-bottom: 0.5rem;
+}
+
+.sweataler2 p {
+margin-bottom: 0;
+}
+
+.sweataler2 button {
+position: absolute;
+top: 0.5rem;
+right: 0.5rem;
+background: transparent;
+border: 0;
+font-size: 1.5rem;
+font-weight: 700;
+line-height: 1;
+color: inherit;
+cursor: pointer;
+}
+
+.sweataler2.success {
+color: #155724;
+background-color: #d4edda;
+border-color: #c3e6cb;
+}
+
+.sweataler2.danger {
+color: #721c24;
+background-color: #f8d7da;
+border-color: #f5c6cb;
+}
+
+.sweataler2.success .sweataler2-close {
+color: #155724;
+}
+
+.sweataler2.danger .sweataler2-close {
+color: #721c24;
+}
+
+.sweataler2.success {
+transform: translateX(-100%);
+}
+
+.sweataler2.danger {
+transform: translateX(100%);
+}
+
+.sweataler2.show {
+transform: translateX(0);
+}

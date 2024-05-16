@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Menu</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{../css/styles.css}" rel="stylesheet" />
+</head>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC32VsgEeKPGzCBDCFFgLaafZAvmvcvVOA&libraries=places"></script>
+
+<body onload="initMap()">
+
+    <!-- <label for="origen">Origen:</label> -->
+    <!-- <input type="text" id="origen" placeholder="Ingrese el origen"><br> -->
+    <!-- <label for="destino">Destino:</label> -->
+    <!-- <input type="text" id="destino" placeholder="Ingrese el destino"><br> -->
+    <!-- <button id="buscar">Buscar</button><br> -->
+    <!-- <div id="bus-routes"></div> -->
+
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#!">rutasPeru</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Mapa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Rutas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#!">Guía del usuario</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Iniciar sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Page header with logo and tagline-->
+    <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">Planificador de viajes en transporte público de Lima</h1>
+                <p class="lead mb-0">La app de movilidad urbana más popular en Lima
+                </p>Todas las opciones de movilidad local en una aplicaciónLa app de movilidad urbana más popular en
+                Lima
+                </p>
+            </div>
+        </div>
+    </header>
+    <!-- Page content-->
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                <!-- Featured blog post-->
+                <div class="card mb-4">
+                    <div id="map" style="height: 400px; width: 100%; margin-top: 10px;"></div>
+
+
+                    <!-- <a href="#!"><img /><iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15606.169128602842!2d-77.04493215!3d-12.07498215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1714842220580!5m2!1ses-419!2spe"
+                            width="850" height="380" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe></a> -->
+
+                    <div class="card-body">
+                        <div class="small text-muted" id="fecha_actual"></div>
+
+                        <script>
+                            // Obtener la fecha actual
+                            var fechaActual = new Date();
+
+                            // Convertir la fecha a un formato legible
+                            var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                            var fechaFormateada = fechaActual.toLocaleDateString('es-ES', opcionesFecha);
+
+                            // Mostrar la fecha en el mismo lugar
+                            document.getElementById("fecha_actual").innerText = fechaFormateada;
+                        </script>
+                        <h2 class="card-title">Propósito del producto</h2>
+                        <p class="card-text">Nuestro sistema web de transporte tiene como propósito principal mejorar
+                            significativamente la experiencia de los usuarios al planificar y realizar sus
+                            desplazamientos diarios. </p>
+                        <a class="btn btn-primary" href="#!">Leer más →</a>
+                    </div>
+                </div>
+                <!-- Nested row for non-featured blog posts-->
+                <div class="row">
+                </div>
+            </div>
+            <!-- Side widgets-->
+			<div class="col-lg-4">
+			    <!-- Search widget-->
+			    <div class="card mb-4">
+			        <div class="card-header">Generador de rutas</div>
+			        <div class="card-body">
+			            <div>
+			                <input id="origen" placeholder="Ingrese el origen" class="form-control" type="text" aria-label="Enter search term..." aria-describedby="button-search"/>
+			            </div>
+			            <br>
+			            <div class="input-group">
+			                <input id="destino" placeholder="Ingrese el destino" class="form-control" type="text" aria-label="Enter search term..." aria-describedby="button-search" />
+			                <button id="buscar" class="btn btn-primary" type="button">Buscar</button>
+			            </div>
+			        </div>
+			        <div id="bus-routes" class="card-header"></div>
+			        <div id="selected-route-info" class="card-body">
+			            <h3>Información de la Ruta Seleccionada:</h3>
+			            <p><strong>Distancia:</strong> <span id="route-distance"></span></p>
+			            <p><strong>Duración:</strong> <span id="route-duration"></span></p>
+			            <p><strong>Detalles de la Ruta:</strong></p>
+			            <ul id="route-details"></ul>
+			            <div id="notification"></div> <!-- Agregamos un div para mostrar la notificación -->
+			        </div>
+			    </div>
+
+			    <!-- Categories widget-->
+			    <div class="card mb-4">
+			        <div class="card-header">Agencias de Autobús</div>
+			        <div class="card-body">
+			            <div class="row">
+			                <div class="col-sm-6">
+			                    <ul class="list-unstyled mb-0" id="bus-agency1"></ul>
+			                </div>
+			                <div class="col-sm-6">
+			                    <ul class="list-unstyled mb-0" id="bus-agency2"></ul>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <!-- Side widget-->
+			    <div class="card mb-4">
+			        <div class="card-header">¡Viaja por Lima en transporte público!</div>
+			        <div class="card-body">Viajar por Lima nunca ha sido tan fácil. Obtén indicaciones paso a paso mientras viajas a cualquier destino, calle o parada. Mira los horarios de trenes y autobuses, alertas de servicio y detalles de las rutas en el mapa, para que sepas exactamente cómo llegar a cualquier parte de Lima.
+			        </div>
+			    </div>
+			</div>
+
+        </div>
+    </div>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script th:src="@{../js/scripts.js}"></script>
+</body>
+
+</html>

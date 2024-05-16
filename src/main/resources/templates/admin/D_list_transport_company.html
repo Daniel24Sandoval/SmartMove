@@ -1,0 +1,186 @@
+    
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+       
+     <title>Lista de Servicio</title>
+        <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	 <!-- Latest compiled and minified CSS -->
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	 <!-- Optional theme -->
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+ 
+ 
+	  <!-- CSS -->
+      <link rel="stylesheet" th:href="@{../css/templatemo-style.css}">
+      
+    </head>
+    <body>
+ 
+
+		<!-- INSERTAR div header -->
+		<div th:insert="~{admin/Template_Admin.html :: header}"></div>
+
+
+     <!-- Listar_Servicios de Tranporte -->
+ 
+ 
+
+	 		<div class="container-fluid">
+		
+	             <ul class="nav nav-tabs nav-justified"  style="font-size: 17px;">
+	               
+	               <li role="presentation" class="active"><a href="#">_ </a></li>
+	 			  
+	           
+	             </ul>
+	         </div>
+	 		
+			 <div class="container-fluid" style="margin: 50px 0;">
+			     <div class="row">
+			         <div class="col-xs-12 col-sm-4 col-md-3">
+						<img src="../img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
+			         </div>
+			         <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+			             Bienvenido a la sección de listado de Empresas de  Transporte.
+			         </div>
+			     </div>
+			 </div>
+
+	        
+	 	
+	 	<div class="container-fluid">
+	 		<div class="row">
+	 			<div class="col-xs-12 lead">
+	 				<ol class="breadcrumb">
+	 				  <li class="active">Listado de ET</li>&nbsp;&nbsp;
+	 				 
+	 				 <a th:href="@{E_new_transport_company}">Nueva ET</a>
+	 				 
+	 				 
+	 				</ol>
+	 			</div>
+	 		</div>
+	 	</div>
+	 	
+	 	 
+	 			
+	 			
+	 		 
+	 		<div class="alert alert-info text-center" style="margin-top:20px;">
+	 			 
+	 		</div>
+	 		 
+
+	 	<div class="container-fluid">
+	             <h2 class="text-center all-tittles">Listado de Empresas de Transporte</h2>
+	 			
+	 			
+	 			<div class="input-group mb-25" style="margin-right: -10em; min-width: 1000px;">
+	 		  <div class="input-group-prepend">
+	 			<span class="input-group-text" id="basic-addon1"></span>
+	 		  </div>
+	 		  <input id="FiltrarContenido" type="text" class="form-control" placeholder="Buscar alumnos..." aria-label="Alumnos" aria-describedby="basic-addon1"> 
+	 		</div>
+	 		
+	             <div class="div-table">
+	              <table class="table table-striped">
+	                         <thead>
+	                           <tr>
+	                                                         <th>N*</th>
+	                                                          <th>ID Alumno</th>
+	 							<th>Nombres y Apellidos</th>
+	                                                            <th>Correo</th> 
+	                                                            <th>Rol</th>
+	                                                            <th>Grado</th>
+	                                                             <th>Fecha Creacion</th>
+	                                                              <th>Estado</th>
+	                                                               <th>Acciones  </th>
+
+	                    
+	                           </tr>
+	                         </thead>
+	                         <tbody class="BusquedaRapida">
+	            
+	                         <form name="form-edit" action=".." method="post"> <tr>
+	                                <th scope="row">cantidad_user</th>
+	                               <td> id</td>
+	                               <td> nombre completo</td>                             
+	                                  <td>correo</td>	
+	                                  <td>rol </td>
+	                                  <td>grado </td>
+	                                  <td>ads</td>
+	                                  
+	                                  
+	                                      <td>   
+	    
+	                                                         <form  action="post"   > 
+	                                                             
+	 <a href="${pageContext.request.contextPath}/Controlador?accion=CambiarEstadoALUA&idd=<%=ALU.getIDALUMMNO()%>"type="submit" class="btn btn-success btn-xs ">Activo</a>
+	 							
+	                                                          
+	 						  </form>
+	                                          
+	                                                     
+	                                          </td> 
+	                                  
+
+	                                  
+	                                  <td>
+	                                      
+ 	 			
+										<a href="${pageContext.request.contextPath}/Controlador?accion=Borrar&id=<%=ALU.getIDALUMMNO()%>" title="Eliminar" data-backdrop="false" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span></a>
+
+										<a th:href="@{C_update_transport_service}" title="Actualizar" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-refresh"></span></a>
+
+										<a th:href="@{G_list_routes_transport}" title="Agregar Rutas de Transporte" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+
+									 
+					</td>
+	                                  
+	                                  
+	                                  
+	                              
+	                           		
+	                               </tr>
+	                          
+	                               
+	                                  </form>
+	                         </tbody>
+	 						
+	 						
+	                       </table>     
+	                 
+	               
+	                 
+	             </div>
+	         </div>
+
+     <!-- FOOTER -->
+
+	 <div th:insert="~{admin/Template_Admin.html :: footer}"></div>
+
+     <!-- SCRIPTS -->
+ 
+	 <!-- SCRIPTS FILTRO -->
+	 	<script type="text/javascript">
+	 $(document).ready(function () {
+	    (function($) {
+	        $('#FiltrarContenido').keyup(function () {
+	             var ValorBusqueda = new RegExp($(this).val(), 'i');
+	             $('.BusquedaRapida tr').hide();
+	              $('.BusquedaRapida tr').filter(function () {
+	                 return ValorBusqueda.test($(this).text());
+	               }).show();
+	                 })
+	       }(jQuery));
+	 });
+	 </script> 
+    </body>
+</html>

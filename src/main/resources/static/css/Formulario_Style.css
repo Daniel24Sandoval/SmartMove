@@ -1,0 +1,94 @@
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+body {
+    background-color: white;
+    background-position: center;
+    background-size: cover;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.form-box {
+    position: relative;
+    width: 1000px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -250px;
+    text-align: center; /* Centramos horizontalmente los elementos internos */
+}
+
+.inputbox {
+    position: relative;
+    margin: 30px 0;
+    width: 810px;
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+.inputbox label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: rgb(0, 0, 0);
+    font-size: 1em;
+    pointer-events: none;
+    transition: .5s;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -5px;
+}
+
+.inputbox input {
+    width: calc(100% - 40px);
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 20px;
+    margin: 0;
+    color: rgb(0, 0, 0);
+    box-sizing: border-box;
+}
+
+.inputbox ion-icon {
+    position: absolute;
+    right: 8px;
+    color: black;
+    font-size: 1.2em;
+    top: 20px;
+}
+
+button {
+    width: 50%;
+    height: 40px;
+    border-radius: 40px;
+    background: rgb(0, 0, 0);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    margin: 0 auto; /* Centramos horizontalmente el botón */
+}
+

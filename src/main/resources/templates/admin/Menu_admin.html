@@ -1,0 +1,141 @@
+    
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+       
+     <title>Sistema de Rendimiento Escolar</title>
+        <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+     <link rel="stylesheet" th:href="@{css/font-awesome.min.css}">
+     <link rel="stylesheet" th:href="@{css/owl.carousel.css}">
+     <link rel="stylesheet" th:href="@{css/owl.theme.default.min.css}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
+      <!-- CSS -->
+      <link rel="stylesheet" th:href="@{css/templatemo-style.css}">
+      
+    </head>
+    <body>
+ 
+
+		<!-- INSERTAR div header -->
+		<div th:insert="~{admin/Template_Admin.html :: header}"></div>
+
+
+     <!-- HOME -->
+ 
+     <!-- FEATURE -->
+ <section id="feature">
+        <div class="container">
+            <div class="row">
+                <h1>Menú</h1>
+                <br>
+                <div class="col-md-4 col-sm-4">
+					<a href="url_perfil">
+                    <div class="feature-thumb"> 
+						
+                        <div class="logotaller">
+                            
+                        </div>
+                        <span class="fa fa-user-circle-o"></span>
+                        <h3>Perfil</h3>
+                        <p>Accede a tu perfil de usuario donde puedes ver y modificar.</p>
+						
+                    </div>
+                    <br>
+					</a>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+					<a th:href="@{admin/A_list_transport_service}">
+                    <div class="feature-thumb">
+                        <div class="logotaller">
+                             
+                        </div>
+                        <span class="fa fa-bus"> </span>
+                        <h3>Servicios de Transporte</h3>
+                        <p>Explora y actualiza la información de los servicios de transporte disponibles.</p>
+                    </div>
+                    <br>
+					</a>	
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+					<a th:href="@{admin/D_list_transport_company}">
+                    <div class="feature-thumb">
+                        <div class="logotaller">
+                         </div>
+                        <span class="fa fa-building"> </span>
+                        <h3>Empresa de Transporte</h3>
+                        <p>Ve y modifica los detalles de las empresas de transporte.</p>
+                    </div>
+                    <br>
+					</a>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+					<a th:href="@{admin/G_list_routes_transport}">
+                    <div class="feature-thumb">
+                        <div class="logotaller">
+                             
+                        </div>
+                        <span class="fa fa-map-signs"> </span>
+                        <h3>Ruta de Transporte</h3>
+                        <p>Examinia y edita las diversas rutas de transporte disponibles.  </p>
+                    </div>
+                    <br>
+					</a>
+                </div>
+
+    
+
+                <div class="col-md-4 col-sm-4">
+					<a th:href="@{admin/M_list_routes_transport}">
+                    <div class="feature-thumb">
+                        <div class="logotaller">
+                          
+                        </div>
+                        <span class="fa fa-bus"> </span>
+                        <h3>Unidad de Transporte</h3>
+                        <p>Consulta y realiza modificaciones en la información de las unidades de transporte.</p>
+                    </div>
+                    <br>
+					</a>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+					<a href="url_perfil">
+                    <div class="feature-thumb">
+                        <div class="logotaller">
+                          
+                        </div>
+                        <span class="fa fa-graduation-cap"> </span>
+                        <h3>Tutorías y Guías</h3>
+                        <p>Accede y edita opciones relacionadas con las tutorías y guías disponibles.</p>
+						<a href="url_perfil">
+                    </div>
+					</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+
+     <!-- FOOTER -->
+
+	 <div th:insert="~{admin/Template_Admin.html :: footer}"></div>
+
+     <!-- SCRIPTS -->
+     <script th:src="@{js/jquery.js}"></script>
+     <script th:src="@{js/bootstrap.min.js}"></script>
+     <script th:src="@{js/owl.carousel.min.js}"></script>
+     <script th:src="@{js/smoothscroll.js}"></script>
+     <script th:src="@{js/custom.js}"></script>
+    </body>
+</html>

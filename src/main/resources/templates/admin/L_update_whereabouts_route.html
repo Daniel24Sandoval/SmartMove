@@ -1,0 +1,133 @@
+    
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+       
+     <title>Lista de Servicio</title>
+        <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 	 <!-- Latest compiled and minified CSS -->
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	 <!-- Optional theme -->
+  
+ 
+	  <!-- CSS -->
+      <link rel="stylesheet" th:href="@{../css/templatemo-style.css}">
+	  <link rel="stylesheet" th:href="@{../css/Formulario_Style.css}">
+	 
+    </head>
+	<body >
+ 
+
+		<!-- INSERTAR div header -->
+		<div th:insert="~{admin/Template_Admin.html :: header}"></div>
+
+
+     <!-- Crear_Servicios de Tranporte -->
+ 
+
+
+
+	  		<div class="container-fluid">
+	 	
+	              <ul class="nav nav-tabs nav-justified"  style="font-size: 17px;">
+	                
+	                <li role="presentation" class="active"><a href="#">_ </a></li>
+	  			  
+	            
+	              </ul>
+	          </div>
+	  		
+	 		 <div class="container-fluid" style="margin: 50px 0;">
+	 		     <div class="row">
+	 		         <div class="col-xs-12 col-sm-4 col-md-3">
+	 					<img src="../img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
+	 		         </div>
+	 		         <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
+	 		             Bienvenido a la sección para actualizar Paradero de Ruta, debes de llenar todos los campos del siguiente formulario para poder registrarlo.
+	 		         </div>
+	 		     </div>
+	 		 </div>
+
+	         
+	  	
+	  	<div class="container-fluid">
+	  		<div class="row">
+	  			<div class="col-xs-12 lead">
+	  				<ol class="breadcrumb">
+	  				  <li class="active"></li>&nbsp;&nbsp;
+	  				 
+	  				 <a th:href="@{J_list_whereabouts_route}">Listado de Paradero</a>
+	  				 
+	  				 
+	  				</ol>
+	  			</div>
+	  		</div>
+	  	</div>
+	  	
+	  	 
+	  			
+	  			
+	  		 
+	  		<div class="alert alert-info text-center" style="margin-top:20px;">
+	  			 
+	  		</div>
+	  		 
+			<!-- FORMULARIO DE CREACION: -->
+    <section>
+		
+        <div class="form-box">
+			
+            <div class="form-value">
+				
+                <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
+                    
+                    <div class="inputbox">
+                        <ion-icon name="text"></ion-icon>
+                        <input type="text" id="nombre" name="nombre" required>
+                        <label for="">Nombre</label>
+                    </div>
+                     <div class="inputbox">
+                        <ion-icon name="text"></ion-icon>
+                        <input type="text" id="apellido"  name="apellido" required>
+                        <label for="">Apellido</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" id="correo" name="correo" required>
+                        <label for="">Correo</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" id="password" name="password" required>
+                        <label for="">Contraseña</label>
+                        <input type="hidden" name="rol" value="User">
+                        <input type="hidden" name="estado" value="Activo">
+                        <input type="hidden" id="fechaC" name="fechaC" th:value="${T(java.time.LocalDate).now().toString()}" readonly>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                     	
+                </form>
+            </div>
+        </div>
+    </section>
+    
+
+     <!-- FOOTER -->
+
+	 <div th:insert="~{admin/Template_Admin.html :: footer}"></div>
+
+     <!-- SCRIPTS -->
+ 
+	 <!-- SCRIPTS FILTRO -->
+ 	 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+  
+    </body>
+</html>

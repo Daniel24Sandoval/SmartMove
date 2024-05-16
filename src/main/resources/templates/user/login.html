@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+	
+
+<head>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" th:href="@{../css/Login_Style.css}">
+  <link rel="stylesheet" th:href="@{../css/estilos_Template.css}">
+      <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+   
+ 
+
+ 
+     
+	  <a th:href="@{/user}" class="logo">
+	      <img th:src="@{../img/Fondo oscuro.png}">
+	  </a>
+
+<body>
+	
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form th:action="@{/usuario/acceder}" method="post">
+                    <h2>Iniciar Sesión</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input name="correo" type="email" required>
+                        <label for="">Correo</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input name="password" type="password" required>
+                        <label for="">Contraseña</label>
+                    </div>
+                    <div class="forget">
+                        <label for=""><input type="checkbox">Recordar <br>
+                             <a href="#">Olvidaste tu contraseña</a></label>
+                      
+                    </div>
+                    <button type="submit">Ingresar</button>
+                    <div class="register">
+                        <p>No tienes cuenta <a th:href="@{/user/Registro}">Registrate</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+      
+    
+       <div th:insert="~{user/Template_Admin.html :: footer}"></div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script :src="sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+ <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+ 
+ 
+ 
+<script th:inline="javascript">
+    const success = /*[[${success}]]*/ null;
+    if (success === 'success') {
+        Swal.fire(
+            '¡Felicidades!',
+            'Ya perteneces a nuestro Sistema.',
+            'success'
+        );
+    }
+</script>
+
+</body>
+</html>
