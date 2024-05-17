@@ -81,43 +81,37 @@
 			
             <div class="form-value">
 				
-                <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
-                    
-                    <div class="inputbox">
-                        <ion-icon name="text"></ion-icon>
-                        <input type="text" id="nombre" name="nombre" required>
-                        <label for="">Nombre de Empresa</label>
-                    </div>
-                     <div class="inputbox">
-                        <ion-icon name="text"></ion-icon>
-                        <input type="text" id="apellido"  name="apellido" required>
-                        <label for="">Descripcion</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" id="correo" name="correo" required>
-                        <label for="">RUC</label>
-                    </div>
-					
-					<div class="inputbox">
-					    <!-- Icono dependiendo de la opción seleccionada -->
-						
- 					    <!-- Combo box con tres opciones -->
-						
-					    <select id="nombre" name="id" required>
-					        <option value="" disabled selected>Selecciona una opción</option>
-					        <option value="tpublico">Transporte Público</option>
-					        <option value="metropolitano">Metropolitano</option>
-					        <option value="tren">Tren</option>
-					        <option value="tprivado">Transporte Privado</option>
-					    </select>
-					    <!-- Etiqueta descriptiva -->
-					    <label for="nombre">Tipo de Servicio</label>
-					</div>
+				<form th:action="@{/admin/saveet}" method="post" enctype="multipart/form-data">
+				    <div class="inputbox">
+				        <ion-icon name="text"></ion-icon>
+				        <input type="text" id="nombre" name="nombre" required>
+				        <label for="">Nombre de Empresa</label>
+				    </div>
+				    <div class="inputbox">
+				        <ion-icon name="text"></ion-icon>
+				        <input type="text" id="descripcion" name="descripcion" required>
+				        <label for="">Descripcion</label>
+				    </div>
+				    <div class="inputbox">
+				        <ion-icon name="mail-outline"></ion-icon>
+				        <input type="text" id="ruc" name="ruc" required>
+				        <label for="">RUC</label>
+				    </div>
+				    <div class="inputbox">
+				        <label for="servicioTransporte_id">Tipo de Servicio</label>
+				        <ion-icon name="bus"></ion-icon><br><br>
+				        <select name="servicioTransporte_id" id="servicioTransporte_id" required style="width: 100%;">
+				            <option value="" disabled selected>Selecciona</option>
+				            <!-- Iterar sobre la lista de tipos de transporte y mostrarlos como opciones -->
+				            <option th:each="tipoTransporte : ${tiposTransporte}"
+				                    th:value="${tipoTransporte.id}"
+				                    th:text="${tipoTransporte.nombre}">
+				            </option>
+				        </select>
+				    </div>
+				    <button type="submit" class="btn btn-success">Guardar</button>
+				</form>
 
-                    <button type="submit" class="btn btn-success">Guardar</button>
-                     	
-                </form>
             </div>
         </div>
     </section>

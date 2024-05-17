@@ -86,5 +86,20 @@ public class ServicioTransporte {
 		this.descripcion = descripcion;
 	}
 
+
+
+	public List<EmpresaTransporte> getEmpresaTransporte() {
+		return EmpresaTransporte;
+	}
+
+
+
+	public void setEmpresaTransporte(List<EmpresaTransporte> empresaTransporte) {
+		EmpresaTransporte = empresaTransporte;
+	}
+
+
+
+	 
  
 	}

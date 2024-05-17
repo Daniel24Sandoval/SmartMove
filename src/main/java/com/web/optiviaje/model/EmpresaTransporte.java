@@ -71,5 +71,22 @@ public class EmpresaTransporte {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-    
+
+	public ServicioTransporte getServicioTransporte() {
+		return servicioTransporte;
+	}
+
+	public void setServicioTransporte(ServicioTransporte servicioTransporte) {
+		this.servicioTransporte = servicioTransporte;
+	}
+
+	public List<NLinea> getNLinea() {
+		return NLinea;
+	}
+
+	public void setNLinea(List<NLinea> nLinea) {
+		NLinea = nLinea;
+	}
+
+	 
 }

@@ -44,6 +44,12 @@ public class Paradero {
 		public void setUrlUbicacion(String urlUbicacion) {
 			this.urlUbicacion = urlUbicacion;
 		}
-	    
+		public NLinea getnLinea() {
+			return nLinea;
+		}
+		public void setnLinea(NLinea nLinea) {
+			this.nLinea = nLinea;
+		}
+		 
 		
 }

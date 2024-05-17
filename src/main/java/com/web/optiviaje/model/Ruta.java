@@ -44,5 +44,18 @@ public class Ruta {
 		public void setTramo(String tramo) {
 			this.tramo = tramo;
 		}
+		public UnidadTransporte getUnidadTransporte() {
+			return unidadTransporte;
+		}
+		public void setUnidadTransporte(UnidadTransporte unidadTransporte) {
+			this.unidadTransporte = unidadTransporte;
+		}
+		public List<Viaje> getViaje() {
+			return Viaje;
+		}
+		public void setViaje(List<Viaje> viaje) {
+			Viaje = viaje;
+		}
+ 
 	    
 }

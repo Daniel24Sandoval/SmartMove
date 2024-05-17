@@ -91,6 +91,24 @@ public class UnidadTransporte {
 		public void setCapacidad(int capacidad) {
 			this.capacidad = capacidad;
 		}
+
+		public NLinea getnLinea() {
+			return nLinea;
+		}
+
+		public void setnLinea(NLinea nLinea) {
+			this.nLinea = nLinea;
+		}
+
+		public List<Ruta> getRuta() {
+			return Ruta;
+		}
+
+		public void setRuta(List<Ruta> ruta) {
+			Ruta = ruta;
+		}
+
+ 
 	    
 		
 }

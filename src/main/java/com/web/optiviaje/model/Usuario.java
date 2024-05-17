@@ -56,9 +56,6 @@ public class Usuario {
 			this.numeroTelefono = numeroTelefono;
 			this.estado = estado;
 		}
-		
-	    //GEET AND SEETER:
-
 		public int getId() {
 			return id;
 		}
@@ -95,11 +92,38 @@ public class Usuario {
 		public void setEstado(boolean estado) {
 			this.estado = estado;
 		}
-	    
-	    
-
-	    
-	    
+		public List<PreguntaFrecuente> getPreguntaFrecuente() {
+			return PreguntaFrecuente;
+		}
+		public void setPreguntaFrecuente(List<PreguntaFrecuente> preguntaFrecuente) {
+			PreguntaFrecuente = preguntaFrecuente;
+		}
+		public List<Notificacion> getNotificacion() {
+			return notificacion;
+		}
+		public void setNotificacion(List<Notificacion> notificacion) {
+			this.notificacion = notificacion;
+		}
+		public List<Preferencia> getPreferencia() {
+			return preferencia;
+		}
+		public void setPreferencia(List<Preferencia> preferencia) {
+			this.preferencia = preferencia;
+		}
+		public List<PreguntaFrecuente> getPreguntaFrecuentes() {
+			return preguntaFrecuentes;
+		}
+		public void setPreguntaFrecuentes(List<PreguntaFrecuente> preguntaFrecuentes) {
+			this.preguntaFrecuentes = preguntaFrecuentes;
+		}
+		public List<Viaje> getViaje() {
+			return viaje;
+		}
+		public void setViaje(List<Viaje> viaje) {
+			this.viaje = viaje;
+		}
+		
+	 
 	    
 	    
 }

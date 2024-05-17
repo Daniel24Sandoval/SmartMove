@@ -93,7 +93,19 @@ public class Viaje {
 	public void setTrafico(String trafico) {
 		this.trafico = trafico;
 	}
-    
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	public Ruta getRuta() {
+		return ruta;
+	}
+	public void setRuta(Ruta ruta) {
+		this.ruta = ruta;
+	}
+ 
 
     
 }

@@ -43,5 +43,12 @@ public class Preferencia {
 		public void setPriorizarTiempo(boolean priorizarTiempo) {
 			this.priorizarTiempo = priorizarTiempo;
 		}
+		public Usuario getUsuario() {
+			return usuario;
+		}
+		public void setUsuario(Usuario usuario) {
+			this.usuario = usuario;
+		}
+		 
 	    
 }

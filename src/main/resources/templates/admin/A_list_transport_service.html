@@ -102,20 +102,26 @@
 	                         </thead>
 	                         <tbody class="BusquedaRapida">
 	            
-	                         <form name="form-edit" action=".." method="post"> <tr>
-	                                  <th scope="row">cantidad_user</th>
-	                                  <td> id</td>
-	                                  <td> nombre completo</td>                             
-	                                  <td>correo</td>	
-	                                  
-	                                  <td>
-	                                  <a href="${pageContext.request.contextPath}/Controlador?accion=Borrar&id=<%=ALU.getIDALUMMNO()%>"  title="Eliminar" data-backdrop="false" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span></a>
-	 				                  </td>
-						              <td>
-						   			<a th:href="@{C_update_transport_service}" title="Actualizar" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>				 	
+	                         <form name="form-edit" action="" method="post"> 
+								<tr th:each="l : ${listats}">
+								    <th scope="row">cantidad_user</th>
+								    <td th:text="${l.id}"></td>
+								    <td th:text="${l.nombre}"></td>
+								    <td th:text="${l.descripcion}"></td>
+								    <td>
+								        <a th:href="@{/Controlador?accion=Borrar&id={id}(id=${l.id})}" 
+								           title="Eliminar" class="btn btn-danger btn-sm">
+								           <span class="glyphicon glyphicon-trash"></span>
+								        </a>
+								    </td>
+								    <td>
+								        <a th:href="@{/admin/C_update_transport_service/{id}(id=${l.id})}" 
+								           title="Actualizar" class="btn btn-success btn-sm">
+								           <span class="glyphicon glyphicon-plus"></span>
+								        </a>
+								    </td>
+								</tr>
 
-									</td>                		
-	                               </tr>
  
 	                                  </form>
 	                         </tbody>

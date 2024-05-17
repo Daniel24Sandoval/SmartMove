@@ -42,43 +42,102 @@ public class NLinea {
 			this.inicio = inicio;
 			this.destino = destino;
 		}
+
+
+
 		public int getId() {
 			return id;
 		}
+
+
+
 		public void setId(int id) {
 			this.id = id;
 		}
+
+
+
 		public String getCodigoLinea() {
 			return codigoLinea;
 		}
+
+
+
 		public void setCodigoLinea(String codigoLinea) {
 			this.codigoLinea = codigoLinea;
 		}
+
+
+
 		public String getUrlRuta() {
 			return urlRuta;
 		}
+
+
+
 		public void setUrlRuta(String urlRuta) {
 			this.urlRuta = urlRuta;
 		}
+
+
+
 		public String getInicio() {
 			return inicio;
 		}
+
+
+
 		public void setInicio(String inicio) {
 			this.inicio = inicio;
 		}
+
+
+
 		public String getDestino() {
 			return destino;
 		}
+
+
+
 		public void setDestino(String destino) {
 			this.destino = destino;
 		}
-	    
-		   //MAPEAMOS NUESTRAS VARIABLE HACIA OTRAS CLASES QUE COMPARTE RELACION 
-		   //SINTAXIS: @ONETOMANY OR MANYTOONE (MAPPENBY= OBJETO CREADO EN LA CLASE RELACIONADA (private Usuario usuario;))
-		   //SINTAXIS2: PRIVATE LISTA <NOMBRE_CLASE_DERELACION> NOMBRE_TABLA_DERELACION; @Table name 
-			
 
-			 
-	    
+
+
+		public List<Paradero> getParadero() {
+			return Paradero;
+		}
+
+
+
+		public void setParadero(List<Paradero> paradero) {
+			Paradero = paradero;
+		}
+
+
+
+		public EmpresaTransporte getEmpresaTransporte() {
+			return empresaTransporte;
+		}
+
+
+
+		public void setEmpresaTransporte(EmpresaTransporte empresaTransporte) {
+			this.empresaTransporte = empresaTransporte;
+		}
+
+
+
+		public List<UnidadTransporte> getUnidadTransporte() {
+			return UnidadTransporte;
+		}
+
+
+
+		public void setUnidadTransporte(List<UnidadTransporte> unidadTransporte) {
+			UnidadTransporte = unidadTransporte;
+		}
+		 
 	    
 }
