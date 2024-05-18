@@ -16,8 +16,8 @@
   
  
 	  <!-- CSS -->
-      <link rel="stylesheet" th:href="@{../css/templatemo-style.css}">
-	  <link rel="stylesheet" th:href="@{../css/Formulario_Style.css}">
+      <link rel="stylesheet" th:href="@{/css/templatemo-style.css}">
+	  <link rel="stylesheet" th:href="@{/css/Formulario_Style.css}">
 	 
     </head>
 	<body >
@@ -45,7 +45,7 @@
 	 		 <div class="container-fluid" style="margin: 50px 0;">
 	 		     <div class="row">
 	 		         <div class="col-xs-12 col-sm-4 col-md-3">
-	 					<img src="../img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
+	 					<img src="/img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
 	 		         </div>
 	 		         <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
 	 		             Bienvenido a la sección para registrar un nueva Ruta de Transporte, debes de llenar todos los campos del siguiente formulario para poder registrarlo.
@@ -61,7 +61,7 @@
 	  				<ol class="breadcrumb">
 	  				
 	  				 
-	  				 <a  th:href="@{G_list_routes_transport}">Listado de Rutas</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	  				 <a  th:href="@{/admin/G_list_routes_transport/{id}(id=${empresaTransporteId})}">Listado de Rutas</a>&nbsp;&nbsp;&nbsp;&nbsp;
 					 <li class="active">Nuevo Ruta</li>
 	  				 
 	  				</ol>
@@ -84,13 +84,13 @@
 			
             <div class="form-value">
 				
-				<form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
+				<form th:action="@{/admin/savenlr}" method="post" enctype="multipart/form-data">
  
 				    <div class="inputbox">
 				        <!-- Icono de una línea de código -->
 				        <ion-icon name="code"></ion-icon>
 				        <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
-				        <input type="text" id="codigo" name="codigo"  required>
+				        <input type="text" id="codigoLinea" name="codigoLinea"  required>
 				        <!-- Agregar una etiqueta descriptiva -->
 				        <label for="codigo">Código de línea</label>
 				    </div>
@@ -98,7 +98,7 @@
 				        <!-- Icono de un punto de origen -->
 				        <ion-icon name="locate"></ion-icon>
 				        <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
-				        <input type="text" id="origen"  name="origen" required>
+				        <input type="text" id="inicio"  name="inicio" required>
 				        <!-- Agregar una etiqueta descriptiva -->
 				        <label for="origen">Origen</label>
 				    </div>
@@ -110,27 +110,13 @@
 				        <!-- Agregar una etiqueta descriptiva -->
 				        <label for="destino">Destino</label>
 				    </div>
- 
 					<div class="inputbox">
-					    <!-- Agregar una etiqueta descriptiva -->
+					 <!-- Icono de un enlace para representar una URL -->
+					 <ion-icon name="bus"></ion-icon><br><br>
+					 <input type="text" id="empresaTransporte" name="empresaTransporte" th:value="${empresaTransporteId}"  readonly required>
+					   <label for="servicioTransporte">ID Empresa de Transporte</label>
+				 </div>
  
-
-					    <label for="id">Empresa de Transporte</label> 
-					    <!-- Icono de un camión para representar una empresa de transporte -->
-					    <ion-icon name="bus"></ion-icon>
-					    <!-- Input oculto para enviar el ID seleccionado -->
-					    <input type="hidden" name="id" required>
-					    <!-- Combobox para seleccionar la empresa de transporte -->
-					    <br><br><select name="nombreEmpresa" required style="width: 100%;" onchange="this.previousElementSibling.value=this.value;">
-					        <option value="" disabled selected>Selecciona una empresa de transporte</option>
-					        <!-- Agregar opciones para cada empresa de transporte -->
-					        <option value="empresa1">Empresa 1</option>
-					        <option value="empresa2">Empresa 2</option>
-					        <option value="empresa3">Empresa 3</option>
-					        <!-- Añade más opciones según sea necesario -->
-					    </select>
-						
-					</div>
 
 					<div class="inputbox">
 					    <!-- Icono de un enlace para representar una URL -->

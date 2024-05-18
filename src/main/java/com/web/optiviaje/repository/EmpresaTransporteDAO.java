@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.web.optiviaje.model.EmpresaTransporte;
 
 @Repository
-public interface transportcompanyDAO extends JpaRepository<EmpresaTransporte, Integer>{
+public interface EmpresaTransporteDAO extends JpaRepository<EmpresaTransporte, Integer>{
 
 }

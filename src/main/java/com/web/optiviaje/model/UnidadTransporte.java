@@ -24,7 +24,7 @@ public class UnidadTransporte {
 	    
 		
 		  @ManyToOne 
-		  private NLinea nLinea;
+		  private NLinea nlinea;
 		  
 		  @OneToMany(mappedBy = "unidadTransporte") 
 		  private List<Ruta> Ruta;
@@ -43,7 +43,12 @@ public class UnidadTransporte {
 			this.distanciaKilometros = distanciaKilometros;
 			this.capacidad = capacidad;
 		}
-
+	    public int getNLineaNombre() {
+	        if (nlinea != null) {
+	            return nlinea.getId();
+	        }
+	        return (Integer) null;
+	    }
 		public int getId() {
 			return id;
 		}
@@ -92,12 +97,12 @@ public class UnidadTransporte {
 			this.capacidad = capacidad;
 		}
 
-		public NLinea getnLinea() {
-			return nLinea;
+		public NLinea getNlinea() {
+			return nlinea;
 		}
 
-		public void setnLinea(NLinea nLinea) {
-			this.nLinea = nLinea;
+		public void setNlinea(NLinea nlinea) {
+			this.nlinea = nlinea;
 		}
 
 		public List<Ruta> getRuta() {

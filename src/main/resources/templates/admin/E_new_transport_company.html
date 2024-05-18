@@ -98,9 +98,9 @@
 				        <label for="">RUC</label>
 				    </div>
 				    <div class="inputbox">
-				        <label for="servicioTransporte_id">Tipo de Servicio</label>
+				        <label for="servicioTransporte">Tipo de Servicio</label>
 				        <ion-icon name="bus"></ion-icon><br><br>
-				        <select name="servicioTransporte_id" id="servicioTransporte_id" required style="width: 100%;">
+				        <select name="servicioTransporte" id="servicioTransporte" required style="width: 100%;">
 				            <option value="" disabled selected>Selecciona</option>
 				            <!-- Iterar sobre la lista de tipos de transporte y mostrarlos como opciones -->
 				            <option th:each="tipoTransporte : ${tiposTransporte}"

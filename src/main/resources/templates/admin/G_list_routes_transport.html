@@ -13,7 +13,7 @@
 	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 	  <!-- CSS -->
-      <link rel="stylesheet" th:href="@{../css/templatemo-style.css}">
+      <link rel="stylesheet" th:href="@{/css/templatemo-style.css}">
       
     </head>
     <body>
@@ -40,7 +40,7 @@
 			 <div class="container-fluid" style="margin: 50px 0;">
 			     <div class="row">
 			         <div class="col-xs-12 col-sm-4 col-md-3">
-						<img src="../img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
+						<img src="/img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
 			         </div>
 			         <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
 			             Bienvenido a la sección de listado de Rutas de (Nombre de la empresa).
@@ -56,7 +56,7 @@
 	 				<ol class="breadcrumb">
 	 				  <li class="active">Listado de Rutas</li>&nbsp;&nbsp;
 	 				 
-	 				 <a th:href="@{H_new_routes_transport}">Nueva Ruta</a>
+					  <a th:href="@{/admin/H_new_routes_transport/{id}(id=${id})}">Nueva Ruta</a>
 	 				 
 	 				 
 	 				</ol>
@@ -86,7 +86,7 @@
 			    <div class="div-table">
 			        <table class="table table-striped">
 			            <thead>
-			                <tr>
+			                <tr >
 			                    <th>N*</th>
 			                    <th>ID</th>
 			                    <th>Codigo Linea</th>
@@ -100,26 +100,30 @@
 			                </tr>
 			            </thead>
 			            <tbody class="BusquedaRapida">
-			                <form name="form-edit" action=".." method="post">
-			                    <tr>
+			                <form name="form-edit" action="" method="post">
+			                    <tr th:each="e : ${lineas}">
 			                        <th scope="row">cantidad_user</th>
-			                        <td>id</td>
-			                        <td>nombre completo</td>                             
-			                        <td>correo</td>	
-			                        <td>rol</td>
-			                        <td>grado</td>
+									<td th:text="${e.id}"></td>
+			                        <td th:text="${e.codigoLinea}"> </td>
+			                        <td th:text="${e.inicio}"> </td>                             
+			                        <td th:text="${e.destino}"> </td>	
+			                        <td th:text="${e.getEmpresaTransporteNombre}" ></td>
 									
 									<td>
-									    <a href="${pageContext.request.contextPath}/Controlador?accion=Borrar&id=<%=ALU.getIDALUMMNO()%>" title="Eliminar" data-backdrop="false" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span></a>
+									        <form th:action="@{/admin/deletenlr/{id}(id=${e.id})}" method="post" style="display:inline;">
+									            <button type="submit" title="Eliminar" class="btn btn-danger btn-sm">
+									                <span class="glyphicon glyphicon-trash"></span>
+									            </button>
+									        </form>
+									    </td>
+									<td>
+									    <a th:href="@{/admin/I_update_routes_transport/{id}(id=${e.id})}" title="Actualizar" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-refresh"></span></a>
 									</td>
 									<td>
-									    <a th:href="@{I_update_routes_transport}" title="Actualizar" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-refresh"></span></a>
+									    <a th:href="@{/admin/J_list_whereabouts_route/{id}(id=${e.id})}" title="Agregar Paraderos de Ruta" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
 									</td>
 									<td>
-									    <a th:href="@{J_list_whereabouts_route}" title="Agregar Paraderos de Ruta" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
-									</td>
-									<td>
-									    <a th:href="@{N_list_transport_unit}" title="Agregar Unidadd Transporte" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+									    <a th:href="@{/admin/N_list_transport_unit/{id}(id=${e.id})}" title="Agregar Unidadd Transporte" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
 									</td>
 
 			                    </tr>

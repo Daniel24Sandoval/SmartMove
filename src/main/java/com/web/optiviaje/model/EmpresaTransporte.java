@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -21,6 +22,7 @@ public class EmpresaTransporte {
     private String descripcion;
     
 	   @ManyToOne 
+	    @JoinColumn(name = "servicioTransporte_id", referencedColumnName = "id")
 	   private ServicioTransporte servicioTransporte;
 	   //MAPEAMOS NUESTRAS VARIABLE HACIA OTRAS CLASES QUE COMPARTE RELACION 
 	   //SINTAXIS: @ONETOMANY OR MANYTOONE (MAPPENBY= OBJETO CREADO EN LA CLASE RELACIONADA (private Usuario usuario;))
@@ -28,7 +30,12 @@ public class EmpresaTransporte {
 	    @OneToMany(mappedBy = "empresaTransporte")
 	    private List<NLinea> NLinea;
 	   
-	   
+	    public String getServicioTransporteNombre() {
+	        if (servicioTransporte != null) {
+	            return servicioTransporte.getNombre();
+	        }
+	        return "Servicio no disponible";
+	    }
     public EmpresaTransporte() {
 	}
 

@@ -16,8 +16,8 @@
   
  
 	  <!-- CSS -->
-      <link rel="stylesheet" th:href="@{../css/templatemo-style.css}">
-	  <link rel="stylesheet" th:href="@{../css/Formulario_Style.css}">
+      <link rel="stylesheet" th:href="@{/css/templatemo-style.css}">
+	  <link rel="stylesheet" th:href="@{/css/Formulario_Style.css}">
 	 
     </head>
 	<body >
@@ -45,7 +45,7 @@
 	 		 <div class="container-fluid" style="margin: 50px 0;">
 	 		     <div class="row">
 	 		         <div class="col-xs-12 col-sm-4 col-md-3">
-	 					<img src="../img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
+	 					<img src="/img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
 	 		         </div>
 	 		         <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
 	 		             Bienvenido a la sección para registrar paraderos de de la ruta (codigo), nombre empresa, debes de llenar todos los campos del siguiente formulario para poder registrarlo.
@@ -61,7 +61,7 @@
 	  				<ol class="breadcrumb">
 	  				
 	  				 
-	  				 <a  th:href="@{J_list_whereabouts_route}">Listado de Paraderos</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	  				 <a  th:href="@{/admin/J_list_whereabouts_route/{id}(id=${rutaId})}">Listado de Paraderos</a>&nbsp;&nbsp;&nbsp;&nbsp;
 					 <li class="active">Nuevo Paradero</li>
 	  				 
 	  				</ol>
@@ -81,12 +81,12 @@
 			<section>
 			    <div class="form-box">
 			        <div class="form-value">
-			            <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
+			            <form th:action="@{/admin/savep}" method="post" enctype="multipart/form-data">
  
 			                <!-- Input para el Nombre del Paradero -->
 			                <div class="inputbox">
 			                    <ion-icon name="bus"></ion-icon>
-			                    <input type="text" id="nombreParadero" name="nombreParadero" required>
+			                    <input type="text" id="nombre" name="nombre" required>
 			                    <label for="nombreParadero">Nombre del Paradero</label>
 			                </div>
 
@@ -96,9 +96,9 @@
 								    <!-- Icono de una llave para representar un ID -->
 								    <ion-icon name="barcode"></ion-icon>
 								    <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
-								    <input type="" id="codigoRuta" name="codigoRuta" placeholder="Codigo de Ruta "      >
+								    <input th:value="${rutaId}" type="" id="nlinea" name="nlinea" placeholder="Codigo de Ruta "      >
 								    <!-- Agregar una etiqueta descriptiva -->
-								    <label for="nombre">Código de Ruta</label>
+								    <label for="nombre">IDR</label>
 								</div>
 			                <!-- Input para la URL de Ubicación -->
 			                <div class="inputbox">

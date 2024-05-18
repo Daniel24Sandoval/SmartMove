@@ -16,8 +16,8 @@
   
  
 	  <!-- CSS -->
-      <link rel="stylesheet" th:href="@{../css/templatemo-style.css}">
-	  <link rel="stylesheet" th:href="@{../css/Formulario_Style.css}">
+      <link rel="stylesheet" th:href="@{/css/templatemo-style.css}">
+	  <link rel="stylesheet" th:href="@{/css/Formulario_Style.css}">
 	 
     </head>
 	<body >
@@ -45,7 +45,7 @@
 	 		 <div class="container-fluid" style="margin: 50px 0;">
 	 		     <div class="row">
 	 		         <div class="col-xs-12 col-sm-4 col-md-3">
-	 					<img src="../img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
+	 					<img src="/img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
 	 		         </div>
 	 		         <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
 	 		             Bienvenido a la sección para actualizar un Rutas de Transporte, debes de llenar todos los campos del siguiente formulario para poder registrarlo.
@@ -61,7 +61,7 @@
 	  				<ol class="breadcrumb">
 	  				  <li class="active"></li>&nbsp;&nbsp;
 	  				 
-	  				 <a th:href="@{G_list_routes_transport}">Listado de Rutas</a>
+	  				 <a th:href="@{/admin/G_list_routes_transport/{id}(id=${id})}">Listado de Rutas</a>
 	  				 
 	  				 
 	  				</ol>
@@ -84,20 +84,20 @@
 			
             <div class="form-value">
 				
-				<form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
+				<form th:action="@{/admin/updatenlr}" method="post" enctype="multipart/form-data">
 				    <div class="inputbox">
 				        <!-- Icono de una llave para representar un ID -->
 				        <ion-icon name="key"></ion-icon>
 				        <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
-				        <input type="text" id="id" name="id" placeholder="ID de la empresa" readonly required>
+				        <input th:value="${nl.id}" type="text" id="id" name="id"   readonly required>
 				        <!-- Agregar una etiqueta descriptiva -->
-				        <label for="id">ID</label>
+				        <label  for="id">ID</label>
 				    </div>
 				    <div class="inputbox">
 				        <!-- Icono de una línea de código -->
 				        <ion-icon name="code"></ion-icon>
 				        <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
-				        <input type="text" id="codigo" name="codigo" readonly required>
+				        <input th:value="${nl.codigoLinea}" type="text" id="codigoLinea" name="codigoLinea"  required>
 				        <!-- Agregar una etiqueta descriptiva -->
 				        <label for="codigo">Código de línea</label>
 				    </div>
@@ -105,7 +105,7 @@
 				        <!-- Icono de un punto de origen -->
 				        <ion-icon name="locate"></ion-icon>
 				        <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
-				        <input type="text" id="origen"  name="origen" readonly required>
+				        <input th:value="${nl.inicio}" type="text" id="inicio"  name="inicio"   required>
 				        <!-- Agregar una etiqueta descriptiva -->
 				        <label for="origen">Origen</label>
 				    </div>
@@ -113,7 +113,7 @@
 				        <!-- Icono de un destino -->
 				        <ion-icon name="navigate"></ion-icon>
 				        <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
-				        <input type="text" id="destino" name="destino" readonly required>
+				        <input th:value="${nl.destino}" type="text" id="destino" name="destino"   required>
 				        <!-- Agregar una etiqueta descriptiva -->
 				        <label for="destino">Destino</label>
 				    </div>
@@ -122,9 +122,9 @@
 					    <!-- Icono de una llave para representar un ID -->
 					    <ion-icon name="bus"></ion-icon>
 					    <!-- Bloquear la entrada de datos y establecer el marcador de posición -->
-					    <input type="text" id="id" name="id" placeholder="Empresa de transporte" readonly required>
+					    <input th:value="${nl.getEmpresaTransporteid}" type="text" id="EmpresaTransporte" name="EmpresaTransporte"     readonly required>
 					    <!-- Agregar una etiqueta descriptiva -->
-					    <label for="id">ID</label>
+					    <label for="id">IDEP</label>
 					</div>
 				    <button type="submit" class="btn btn-success">Actualizar</button> 	
 				</form>

@@ -100,31 +100,28 @@
 	                    
 	                           </tr>
 	                         </thead>
-	                         <tbody class="BusquedaRapida">
-	            
-	                         <form name="form-edit" action="" method="post"> 
-								<tr th:each="l : ${listats}">
-								    <th scope="row">cantidad_user</th>
-								    <td th:text="${l.id}"></td>
-								    <td th:text="${l.nombre}"></td>
-								    <td th:text="${l.descripcion}"></td>
-								    <td>
-								        <a th:href="@{/Controlador?accion=Borrar&id={id}(id=${l.id})}" 
-								           title="Eliminar" class="btn btn-danger btn-sm">
-								           <span class="glyphicon glyphicon-trash"></span>
-								        </a>
-								    </td>
-								    <td>
-								        <a th:href="@{/admin/C_update_transport_service/{id}(id=${l.id})}" 
-								           title="Actualizar" class="btn btn-success btn-sm">
-								           <span class="glyphicon glyphicon-plus"></span>
-								        </a>
-								    </td>
-								</tr>
+							 <tbody class="BusquedaRapida">
+							     <tr th:each="l : ${listats}">
+							         <th scope="row">cantidad_user</th>
+							         <td th:text="${l.id}"></td>
+							         <td th:text="${l.nombre}"></td>
+							         <td th:text="${l.descripcion}"></td>
+							         <td>
+							             <form th:action="@{/admin/delete/{id}(id=${l.id})}" method="post" style="display:inline;">
+							                 <button type="submit" title="Eliminar" class="btn btn-danger btn-sm">
+							                     <span class="glyphicon glyphicon-trash"></span>
+							                 </button>
+							             </form>
+							         </td>
+							         <td>
+							             <a th:href="@{/admin/C_update_transport_service/{id}(id=${l.id})}" 
+							                title="Actualizar" class="btn btn-success btn-sm">
+							                <span class="glyphicon glyphicon-plus"></span>
+							             </a>
+							         </td>
+							     </tr>
+							 </tbody>
 
- 
-	                                  </form>
-	                         </tbody>
 	 						
 	 						
 	                       </table>     

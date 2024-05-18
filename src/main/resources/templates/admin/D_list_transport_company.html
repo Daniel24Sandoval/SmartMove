@@ -89,7 +89,7 @@
 			                <tr>
 			                    <th>N°</th>
 			                    <th>ID</th>
-			                    <th>Nombres</th>
+			                    <th>Nombre</th>
 			                    <th>Descripción</th> 
 			                    <th>RUC</th>
 			                    <th>Tipo de Servicio</th>
@@ -99,21 +99,25 @@
 			                </tr>
 			            </thead>
 			            <tbody class="BusquedaRapida">
-			                <tr>
-			                    <td>cantidad_user</td>
-			                    <td>id</td>
-			                    <td>nombre completo</td>                             
-			                    <td>correo</td>	
-			                    <td>rol</td>
-			                    <td>grado</td>
+			                <tr  th:each="l : ${listatc}">
+			                    <td >cantidad</td>
+			                    <td th:text="${l.id}"> </td>
+			                    <td th:text="${l.nombre}">  </td>                             
+			                    <td th:text="${l.descripcion}"> </td>	
+			                    <td th:text="${l.ruc}"> </td>
+			                    <td th:text="${l.getServicioTransporteNombre}"> </td>
+								<td>
+								        <form th:action="@{/admin/deleteet/{id}(id=${l.id})}" method="post" style="display:inline;">
+								            <button type="submit" title="Eliminar" class="btn btn-danger btn-sm">
+								                <span class="glyphicon glyphicon-trash"></span>
+								            </button>
+								        </form>
+								    </td>
 			                    <td>
-			                        <a href="${pageContext.request.contextPath}/Controlador?accion=Borrar&id=<%=ALU.getIDALUMMNO()%>" title="Eliminar" data-backdrop="false" class="btn btn-danger btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-trash"></span></a>
-			                    </td>
-			                    <td>
-			                        <a th:href="@{F_update_transport_company}" title="Actualizar" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-refresh"></span></a>
+			                        <a th:href="@{/admin/F_update_transport_company/{id}(id=${l.id})}" title="Actualizar" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-refresh"></span></a>
 			                    </td>												                            
 			                    <td>
-			                        <a th:href="@{G_list_routes_transport}" title="Agregar Rutas de Transporte" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
+			                        <a th:href="@{/admin/G_list_routes_transport/{id}(id=${l.id})}" title="Agregar Rutas de Transporte" data-backdrop="false" class="btn btn-success btn-sm" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a>
 			                    </td>
 			                </tr>
 			            </tbody>

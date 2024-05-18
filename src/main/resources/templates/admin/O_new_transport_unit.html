@@ -15,8 +15,8 @@
 	 
  
 	  <!-- CSS -->
-      <link rel="stylesheet" th:href="@{../css/templatemo-style.css}">
-	  <link rel="stylesheet" th:href="@{../css/Formulario_Style.css}">
+      <link rel="stylesheet" th:href="@{/css/templatemo-style.css}">
+	  <link rel="stylesheet" th:href="@{/css/Formulario_Style.css}">
 	 
     </head>
 	<body >
@@ -44,7 +44,7 @@
 	 		 <div class="container-fluid" style="margin: 50px 0;">
 	 		     <div class="row">
 	 		         <div class="col-xs-12 col-sm-4 col-md-3">
-	 					<img src="../img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
+	 					<img src="/img/Logo_solo.png" alt="Lista de Servicio de Transporte" class="img-responsive center-box" style="max-width: 100px; position: absolute; left: 150px;">
 	 		         </div>
 	 		         <div class="col-xs-12 col-sm-8 col-md-8 text-justify lead">
 	 		             Bienvenido a la sección para registrar un nueva Unidad de Transporte de la Empresa de Transporte, debes de llenar todos los campos del siguiente formulario para poder registrarlo.
@@ -60,7 +60,7 @@
 	  				<ol class="breadcrumb">
 	  				
 	  				 
-	  				 <a  th:href="@{N_list_transport_unit}">Listado de Unidad T</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	  				 <a  th:href="@{/admin/N_list_transport_unit/{id}(id=${id})}">Listado de Unidad T</a>&nbsp;&nbsp;&nbsp;&nbsp;
 					 <li class="active">Nuevo Unidad T</li>
 	  				 
 	  				</ol>
@@ -80,14 +80,14 @@
 			<section>
 			    <div class="form-box">
 			        <div class="form-value">
-			            <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
+			            <form th:action="@{/admin/saveut}" method="post" enctype="multipart/form-data">
 			                
  
 			                
 			                <!-- Input para el Nombre -->
 			                <div class="inputbox">
 			                    <ion-icon name="text"></ion-icon>
-			                    <input type="text" id="nombre" name="nombre" required>
+			                    <input type="text" id="nombreConductor" name="nombreConductor" required>
 			                    <label for="nombre">Nombre</label>
 			                </div>
 			                
@@ -101,8 +101,8 @@
 			                <!-- Input para el Código de Ruta -->
 			                <div class="inputbox">
 			                    <ion-icon name="barcode"></ion-icon>
-			                    <input type="text" id="codigo" name="codigo" required>
-			                    <label for="codigo">Código de Ruta</label>
+			                    <input th:value="${id}" type="text" id="nlinea" name="nlinea" required>
+			                    <label for="codigo">ID de Ruta</label>
 			                </div>
 
 			                <!-- Botón para guardar -->

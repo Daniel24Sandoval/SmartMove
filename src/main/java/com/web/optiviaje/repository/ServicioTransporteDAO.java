@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.web.optiviaje.model.ServicioTransporte;
 @Repository
-public interface servicetransportDAO extends JpaRepository<ServicioTransporte, Integer>{
+public interface ServicioTransporteDAO extends JpaRepository<ServicioTransporte, Integer>{
 
 }
