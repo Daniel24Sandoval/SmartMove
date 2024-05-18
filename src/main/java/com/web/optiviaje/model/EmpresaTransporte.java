@@ -28,7 +28,7 @@ public class EmpresaTransporte {
 	   //SINTAXIS: @ONETOMANY OR MANYTOONE (MAPPENBY= OBJETO CREADO EN LA CLASE RELACIONADA (private Usuario usuario;))
 	   //SINTAXIS2: PRIVATE LISTA <NOMBRE_CLASE_DERELACION> NOMBRE_TABLA_DERELACION; @Table name 
 	    @OneToMany(mappedBy = "empresaTransporte")
-	    private List<NLinea> NLinea;
+	    private List<NLinea> nlinea;
 	   
 	    public String getServicioTransporteNombre() {
 	        if (servicioTransporte != null) {
@@ -46,54 +46,43 @@ public class EmpresaTransporte {
 		this.ruc = ruc;
 		this.descripcion = descripcion;
 	}
-
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	public String getRuc() {
 		return ruc;
 	}
-
 	public void setRuc(String ruc) {
 		this.ruc = ruc;
 	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
 	public ServicioTransporte getServicioTransporte() {
 		return servicioTransporte;
 	}
-
 	public void setServicioTransporte(ServicioTransporte servicioTransporte) {
 		this.servicioTransporte = servicioTransporte;
 	}
-
-	public List<NLinea> getNLinea() {
-		return NLinea;
+	public List<NLinea> getNlinea() {
+		return nlinea;
 	}
-
-	public void setNLinea(List<NLinea> nLinea) {
-		NLinea = nLinea;
+	public void setNlinea(List<NLinea> nlinea) {
+		this.nlinea = nlinea;
 	}
+ 
 
 	 
 }

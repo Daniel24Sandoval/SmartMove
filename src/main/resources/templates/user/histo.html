@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Sistema de Rendimiento Escolar</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{../css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.theme.default.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/templatemo-style.css}">
+    <link rel="stylesheet" th:href="@{/css/Formulario_style.css}">
+    <!-- Franco -->
+    <link href="css/styles.css" rel="stylesheet" />
+
+</head>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC32VsgEeKPGzCBDCFFgLaafZAvmvcvVOA&libraries=places"></script>
+
+<body onload="initMap()">
+    <!-- PRE LOADER -->
+    <section class="preloader">
+        <div class="spinner">
+            <span class="spinner-rotate"></span>
+        </div>
+    </section>
+    <!-- MENU -->
+    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- LOGO TEXT HERE -->
+                <img src="../img/Fondo Claro.png" alt="Logo" style="max-height: 100px; max-width: 100px;">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                </button>
+            </div>
+            <!-- MENU LINKS -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-nav-first">
+                    <li><a href="#top" class="smoothScroll">INICIO</a></li>
+                    <li><a href="#top" class="smoothScroll">PERFIL</a></li>
+                    <li><a href="#about" class="smoothScroll">HISTORIAL DE VIAJES</a></li>
+                    <li><a href="#testimonial" class="smoothScroll">PREFERENCIAS</a></li>
+                    <li><a href="#contact" class="smoothScroll">SOPORTE</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historial de viajes -->
+    <section id="historial-viajes" class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">Historial de Viajes</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Fecha</th>
+                            <th>Origen</th>
+                            <th>Destino</th>
+                            <th>Duración</th>
+                            <th>Distancia</th>
+                            <th>Estado del Autobús</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2024-05-10</td>
+                            <td>Av. Siempre Viva 742</td>
+                            <td>Centro Comercial</td>
+                            <td>45 min</td>
+                            <td>10 km</td>
+                            <td>Lleno</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2024-05-11</td>
+                            <td>Plaza Mayor</td>
+                            <td>Universidad Nacional</td>
+                            <td>30 min</td>
+                            <td>8 km</td>
+                            <td>Con espacio</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>2024-05-12</td>
+                            <td>Estación Central</td>
+                            <td>Aeropuerto</td>
+                            <td>60 min</td>
+                            <td>20 km</td>
+                            <td>Lleno</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>2024-05-13</td>
+                            <td>Parque de la Ciudad</td>
+                            <td>Hospital General</td>
+                            <td>25 min</td>
+                            <td>5 km</td>
+                            <td>Con espacio</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="footer-info">
+                        <div class="section-title">
+                            <h2>Sedes</h2>
+                        </div>
+                        <address>
+                            <p>1800 dapibus a tortor pretium,<br> Integer nisl dui, ABC 12000</p>
+                        </address>
+                        <ul class="social-icon">
+                        </ul>
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2018 Company</p>
+                            <p>Design: <a rel="nofollow" href="http://templatemo.com" title="html5 templates"
+                                    target="_parent">Template Mo</a></p>
+                            <p>Distribution: <a href="https://themewagon.com/">ThemeWagon</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="footer-info">
+                        <div class="section-title">
+                            <h2>Contactos</h2>
+                        </div>
+                        <address>
+                            <p>+65 2244 1100, +66 1800 1100</p>
+                            <p><a href="mailto:youremail.com">hello@youremail.co</a></p>
+                        </address>
+                        <div class="footer_menu">
+                            <h2>Enlaces Rápidas</h2>
+                            <ul>
+                                <li><a href="#">Career</a></li>
+                                <li><a href="#">Investor</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Refund Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <div class="footer-info newsletter-form">
+                        <div class="section-title">
+                            <h2>Inscríbase al boletín</h2>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <form action="#" method="get">
+                                    <input type="email" class="form-control"
+                                        placeholder="Introduce tu correo electrónico" name="email" id="email"
+                                        required="">
+                                    <input type="submit" class="form-control" name="submit" id="form-submit"
+                                        value="Enviar">
+                                </form>
+                                <span><sup>*</sup> Tenga en cuenta que no enviamos spam a su correo electrónico.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- SCRIPTS -->
+    <script th:src="@{../js/jquery.js}"></script>
+    <script th:src="@{../js/bootstrap.min.js}"></script>
+    <script th:src="@{../js/owl.carousel.min.js}"></script>
+    <script th:src="@{../js/smoothscroll.js}"></script>
+    <script th:src="@{../js/custom.js}"></script>
+</body>
+
+</html>
+

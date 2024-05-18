@@ -33,5 +33,8 @@ public class UserController {
 	 public String Menu2() {
 			 return "user/Menu2";
 		 }
-	
+	@GetMapping("histo")
+	 public String histo() {
+			 return "user/histo";
+		 }
 }
