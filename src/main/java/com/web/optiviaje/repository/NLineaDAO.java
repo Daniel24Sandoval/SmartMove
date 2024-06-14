@@ -13,6 +13,6 @@ public interface NLineaDAO extends JpaRepository<NLinea, Integer> {
     List<NLinea> findByEmpresaTransporteId(Integer empresaTransporteId);
     Optional<NLinea> findFirstByCodigoLinea(String codigoLinea);
 
-    //NLinea findByCodigoLinea(String codigoLinea);
+    NLinea findByCodigoLinea(String codigoLinea);
 
 }

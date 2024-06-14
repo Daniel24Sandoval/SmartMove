@@ -3,9 +3,7 @@ package com.web.optiviaje.service;
  
 import java.util.List;
 import java.util.Optional;
- 
-
- 
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -189,5 +187,18 @@ public class AdminServiceImpl implements AdminService {
 		return nLineaDAO.findFirstByCodigoLinea(codigoLinea);
 	}
 	
-	
+	@Override
+	public UnidadTransporte seleccionarUnidadTransporte(String idRuta) {
+	    NLinea linea = nLineaDAO.findByCodigoLinea(idRuta);
+	    if (linea != null) {
+	        List<UnidadTransporte> unidades = transporteDAO.findAllByNlinea_Id(linea.getId());
+	        if (!unidades.isEmpty()) {
+	            UnidadTransporte unidadSeleccionada = unidades.get(new Random().nextInt(unidades.size()));
+	            unidadSeleccionada.setEstado(false); // Actualizar el estado a "no lleno"
+	            transporteDAO.save(unidadSeleccionada);
+	            return unidadSeleccionada;
+	        }
+	    }
+	    return null; // Manejar el caso en que no se encuentren unidades de transporte
+	}
 }

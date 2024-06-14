@@ -47,6 +47,7 @@ public interface AdminService {
 		public void deleteut(Integer id);
 		public List<UnidadTransporte> findAllNUnidadTransporte();
 		public List<UnidadTransporte> getutt(Integer id);
-		public Optional<UnidadTransporte> getut(Integer id);		
+		public Optional<UnidadTransporte> getut(Integer id);
+		public UnidadTransporte seleccionarUnidadTransporte(String idRuta);
 
 }

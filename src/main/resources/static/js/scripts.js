@@ -198,20 +198,38 @@ function createRecommendedButton(route, index, buses, directionsResponse) {
     }
 
     recommendedButton.addEventListener("click", () => {
-        selectedRouteIndex = index;
-        directionsRenderer.setDirections(directionsResponse);
-        directionsRenderer.setRouteIndex(index);
-        showTripDetails(directionsResponse, index);
-        centerMapOnRoute(directionsResponse, index);
-        highlightSelectedRoute(recommendedButton);
-
-        // Enviar la ID de la ruta al controlador
-        enviarIdRutaAlControlador(buses[0].numero);
+        showPopup(route, index, buses, directionsResponse);
+        solicitarUnidadTransporte(buses[0].numero); // Llamar a la función para solicitar la unidad de transporte
     });
 
     return recommendedButton;
 }
 
+
+function showPopup(route, index, buses, directionsResponse) {
+    const popup = document.getElementById("ruta-popup");
+    popup.style.display = "block";
+
+    // Inicializar el mapa en el popup
+    const mapPopup = new google.maps.Map(document.getElementById("mapa-popup"), {
+        center: route.legs[0].start_location,
+        zoom: 12,
+    });
+
+    // Mostrar la ruta recomendada en el mapa del popup
+    const routeRenderer = new google.maps.DirectionsRenderer();
+    routeRenderer.setMap(mapPopup);
+    routeRenderer.setDirections(directionsResponse);
+    routeRenderer.setRouteIndex(index);
+
+    // Mostrar los detalles de la ruta en el div correspondiente
+    showTripDetails(directionsResponse, index, document.getElementById("detalles-viaje"));
+}
+
+function hidePopup() {
+    const popup = document.getElementById("ruta-popup");
+    popup.style.display = "none";
+}
 
 
 
@@ -242,6 +260,36 @@ function highlightSelectedRoute(selectedButton) {
 		        }
 		    });
 		}
+ function solicitarUnidadTransporte(idRuta) {
+    $.ajax({
+        type: "POST",
+        url: "/user/seleccionarUnidadTransporte",
+        contentType: "application/json",
+        data: JSON.stringify({ idRuta: idRuta }),
+        success: function(response) {
+            if (response) {
+                mostrarInformacionUnidad(response);
+            } else {
+                console.error("No se encontró una unidad de transporte para la ruta especificada.");
+            }
+        },
+        error: function() {
+            console.error("Error al solicitar la unidad de transporte.");
+        }
+    });
+}
+
+
+ function mostrarInformacionUnidad(unidad) {
+    const detallesUnidad = document.getElementById("detalles-unidad");
+    detallesUnidad.innerHTML = `
+        <h3>Detalles de la Unidad de Transporte</h3>
+        <p><strong>Placa:</strong> ${unidad.placa}</p>
+        <p><strong>Estado:</strong> ${unidad.estado ? 'Lleno' : 'Con espacio'}</p>
+        <p><strong>Conductor:</strong> ${unidad.nombreConductor}</p>
+        <p><strong>Capacidad:</strong> ${unidad.capacidad}</p>
+    `;
+}
 
 
 		
@@ -257,10 +305,10 @@ function highlightSelectedRoute(selectedButton) {
             return estadoAleatorio;
         }
 		
-			 function showTripDetails(directionsResponse, routeIndex) {
-    const tripDetailsDiv = document.getElementById("trip-details");
-    tripDetailsDiv.innerHTML = ""; // Limpiar el contenido anterior
 
+
+
+function showTripDetails(directionsResponse, routeIndex, container) {
     const leg = directionsResponse.routes[routeIndex].legs[0];
 
     // Calcular el retraso del tráfico y la hora estimada de llegada
@@ -313,28 +361,37 @@ function highlightSelectedRoute(selectedButton) {
         <p><strong>Duración:</strong> ${leg.duration.text}${trafficDelay}</p>
         <p><strong>Hora de llegada estimada:</strong> ${arrivalTime.toLocaleTimeString('es-ES')}</p>
         <p><strong>Origen:</strong> ${leg.start_address}</p>
-		<p><strong>Destino:</strong> ${leg.end_address}</p>
+        <p><strong>Destino:</strong> ${leg.end_address}</p>
         <h4>Indicaciones de Subida Y Bajada:</h4>
-    
-    
     `;
 
     // Agregar contenido de detalles del viaje
-    tripDetailsDiv.innerHTML += tripDetailsContent;
+    container.innerHTML = tripDetailsContent;
+    container.appendChild(paraderosLista);
 
-    // Agregar la lista de paraderos a los detalles del viaje
-    tripDetailsDiv.appendChild(paraderosLista);
-// Agregar detalles de caminata y traslado si existen
+    // Agregar detalles de caminata y traslado si existen
     if (walkingAndTransferDetails !== "") {
-        tripDetailsDiv.innerHTML += walkingAndTransferDetails;
+        container.innerHTML += walkingAndTransferDetails;
     }
+
     // Agregar información sobre el tráfico
     const trafficInfo = `
         <p><strong>Tráfico:</strong> ${leg.duration_in_traffic ? 'Hay tráfico' : 'No hay tráfico'}</p>
     `;
-    tripDetailsDiv.innerHTML += trafficInfo;
-
-    
+    container.innerHTML += trafficInfo;
 }
 
+// Evento de clic para cerrar el popup
+const cerrarPopup = document.getElementsByClassName("cerrar-popup")[0];
+cerrarPopup.onclick = function() {
+    hidePopup();
+}
+
+// Evento de clic fuera del popup para ocultarlo
+window.onclick = function(event) {
+    const popup = document.getElementById("ruta-popup");
+    if (event.target == popup) {
+        hidePopup();
+    }
+}
 		
