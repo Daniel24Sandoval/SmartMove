@@ -38,6 +38,9 @@ public interface AdminService {
 		public List<Paradero> findAllNParadero();
 		public List<Paradero> getpp(Integer id);
 		public Optional<Paradero> getp(Integer id);
+		public  Optional<NLinea> findByCodigoLinea(String codigoLinea);
+		///public List<Paradero> obtenerOActualizarRuta(String codigoLinea);
+		//private List<String> obtenerParaderosDesdeWeb(String url);
 	 //UNIDAD TRANSPORTE
 		public UnidadTransporte save(UnidadTransporte unidadTransporte);
 		public UnidadTransporte update(UnidadTransporte unidadTransporte);

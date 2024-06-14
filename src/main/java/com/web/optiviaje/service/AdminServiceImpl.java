@@ -1,7 +1,11 @@
 package com.web.optiviaje.service;
 
+ 
 import java.util.List;
 import java.util.Optional;
+ 
+
+ 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -173,4 +177,17 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return transporteDAO.findAllByNlinea_Id(id);
 	}
+	
+	
+	//EXPERIMENTO
+	 
+
+    
+	@Override
+	public Optional<NLinea> findByCodigoLinea(String codigoLinea) {
+		// TODO Auto-generated method stub
+		return nLineaDAO.findFirstByCodigoLinea(codigoLinea);
+	}
+	
+	
 }

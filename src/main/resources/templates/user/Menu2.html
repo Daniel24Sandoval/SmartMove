@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Sistema de Rendimiento Escolar</title>
+    <title>Smotve</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="description" content="">
@@ -20,9 +20,10 @@
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/templatemo-style.css}">
     <link rel="stylesheet" th:href="@{/css/Formulario_style.css}">
-    <!-- Franco -->
-    <link href="css/styles.css" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/css/styleMenu.css}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+     
 </head>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC32VsgEeKPGzCBDCFFgLaafZAvmvcvVOA&libraries=places"></script>
@@ -60,335 +61,74 @@
     </section>
 <br><br><br><br>
 
-    <div class="container">
-        <div class="row">
-            <!-- Blog entries-->
-            <div class="col-lg-8">
-                <!-- Featured blog post-->
-                <div class="card mb-4">
-                    <div id="map" style="height: 400px; width: 100%; margin-top: 10px;"></div>
+<div class="my-container">
+        <div class="my-search">
+           <div class="my-card mb-4">
+               <div class="my-card-header">Generador de rutas</div>
+               <div class="my-card-body">
+                   <div>
+                       <input id="origen" placeholder="Ingrese el origen" class="my-form-control" type="text" />
+                   </div>
+                   <br>
+                   <div class="my-form-check">
+                       <input class="my-form-check-input" type="checkbox" id="useCurrentLocation">
+                       <label class="my-form-check-label" for="useCurrentLocation">
+                           Usar mi ubicación actual
+                       </label>
+                   </div>
+                   <br>
+                   <div class="my-input-group">
+                       <input id="destino" placeholder="Ingrese el destino" class="my-form-control" type="text" />
+                       <button id="buscar" class="my-btn my-btn-primary" type="button">Buscar</button>
+                   </div>
+               </div>
+           </div>
+       </div>
+	   <div id="loader-container" class="loader-container" style="display: none;">
+	       <div id="loader" class="loader"></div>
+	   </div>
+	   
+	   <div>
+	       <label for="preference">Seleccione su preferencia:</label>
+	       <select id="preference">
+	           <option value="shortest-duration">Menor duración</option>
+	           <option value="fewest-transfers">Menor número de transbordos</option>
+	       </select>
+	   </div>
+	   <div id="bus-routes" class="my-card-header"></div>
+	   <div id="recommended-route" class="my-card-header"></div>
+ 
 
+       <div class="my-map-section">
+		
+		
+           <div class="my-card mb-4">
+               <div class="my-card-body">
+                   <div class="small text-muted" id="fecha_actual"></div>
 
-                    <!-- <a href="#!"><img /><iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15606.169128602842!2d-77.04493215!3d-12.07498215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1714842220580!5m2!1ses-419!2spe"
-                        width="850" height="380" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe></a> -->
-
-                    <div class="card-body">
-                        <div class="small text-muted" id="fecha_actual"></div>
-
-                        <script>
-                            // Obtener la fecha actual
-                            var fechaActual = new Date();
-                            // Convertir la fecha a un formato legible
-                            var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                            var fechaFormateada = fechaActual.toLocaleDateString('es-ES', opcionesFecha);
-
-                            // Mostrar la fecha en el mismo lugar
-                            document.getElementById("fecha_actual").innerText = fechaFormateada;
-                        </script>
-                        <h3 class="card-title">Mapa</h3>
-                        <p class="card-text">Nuestro sistema web de transporte tiene como propósito principal mejorar
-                            significativamente la experiencia de los usuarios al planificar y realizar sus
-                            desplazamientos diarios. </p>
-                        <a class="btn btn-primary" href="#!">Leer más →</a>
-                    </div>
-                </div>
-                <!-- Nested row for non-featured blog posts-->
-                <div class="row">
-                </div>
+                   <h3 class="my-card-title">Mapa</h3>
+               </div>
+               <div id="map" class="my-map-container"></div>
             </div>
-            <!-- Side widgets-->
-            <div class="col-lg-4">
-                <!-- Search widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Generador de rutas</div>
-                    <!-- <div class="card-body">
-                    <div><input id="origen" placeholder="Ingrese el origen" for="origen" class="form-control"
-                            type="text" placeholder="Indique el Origen" aria-label="Enter search term..."
-                            aria-describedby="button-search" /></div>
-                    <br>
-                    <div class="input-group">
-                        <input id="destino" placeholder="Ingrese el destino" class="form-control" type="text"
-                            placeholder="Indique el Destino" aria-label="Enter search term..."
-                            aria-describedby="button-search" />
-                        <button id="buscar" placeholder="Ingrese el destino" class="btn btn-primary"
-                            id="button-search" type="button">Buscar</button>
-                    </div>
-                </div>
-                <div id="bus-routes" class="card-header"></div> -->
-                    <div class="card-body">
-                        <div>
-                            <input id="origen" placeholder="Ingrese el origen" for="origen" class="form-control"
-                                type="text" aria-label="Enter search term..." aria-describedby="button-search" />
-                        </div>
-                        <br>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="useCurrentLocation">
-                            <label class="form-check-label" for="useCurrentLocation">
-                                Usar mi ubicación actual
-                            </label>
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <input id="destino" placeholder="Ingrese el destino" class="form-control" type="text"
-                                aria-label="Enter search term..." aria-describedby="button-search" />
-                            <button id="buscar" class="btn btn-primary"   type="button">Buscar</button>
-                        </div>
-                    </div>
-                    <div id="bus-routes" class="card-header"></div>
-                    <div id="trip-details" class="card-header"></div>
-                </div>
-                <!-- Categories widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Agencias de Autobús
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="https://corredorrojo.pe/">Corredor Rojo</a></li>
-                                    <li><a href="https://corredormorado.pe/">Corredor Morado</a></li>
-                                    <li><a href="https://corredorazul.pe/">
-                                            Corredor Azul</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="https://www.lineauno.pe/">Línea 1 del Metro</a></li>
-                                    <li><a href="https://etul4sa.com/">ETUL4SA</a></li>
-                                    <li><a href="http://www.metropolitano.com.pe/">
-                                            Metropolitano</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Side widget-->
-                <div class="card mb-4">
-                    <div class="card-header">¡Viaja por Lima en transporte público!
-                    </div>
-                    <div class="card-body">Viajar por Lima nunca ha sido tan fácil. Obtén indicaciones paso a paso
-                        mientras viajas a cualquier destino, calle o parada. Mira los horarios de trenes y autobuses,
-                        alertas de servicio y detalles de las rutas en el mapa, para que sepas exactamente cómo llegar a
-                        cualquier parte de Lima.
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+       </div>
+       <div class="my-route-details">
+           <div class="my-card mb-4">
+               <div id="bus-routes" class="my-card-header"></div>
+               <div id="trip-details" class="my-card-body"></div>
+           </div>
+       </div>
+   </div> 
 
 	<br><br><br><br>
     <!-- FOOTER -->
 	<div th:insert="~{admin/Template_Admin.html :: footer}"></div>
 
     <!-- SCRIPTS -->
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC32VsgEeKPGzCBDCFFgLaafZAvmvcvVOA&libraries=places"></script>
-    <script>
-        function initMap() {
-            const map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: -12.0464, lng: -77.0428 },
-                zoom: 12,
-            });
-
-            const directionsService = new google.maps.DirectionsService();
-            const directionsRenderer = new google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(map);
-
-            const origenAutocompletar = new google.maps.places.Autocomplete(document.getElementById("origen"));
-            const destinoAutocompletar = new google.maps.places.Autocomplete(document.getElementById("destino"));
-
-            document.getElementById("buscar").addEventListener("click", () => {
-                if (document.getElementById("useCurrentLocation").checked) {
-                    navigator.geolocation.getCurrentPosition(position => {
-                        const latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                        const geocoder = new google.maps.Geocoder();
-                        geocoder.geocode({ location: latLng }, (results, status) => {
-                            if (status === "OK") {
-                                document.getElementById("origen").value = results[0].formatted_address;
-                                calculateAndDisplayRoute(directionsService, directionsRenderer, latLng);
-                            } else {
-                                window.alert("No se pudo obtener la ubicación actual: " + status);
-                            }
-                        });
-                    }, () => {
-                        window.alert("Error: El servicio de geolocalización falló.");
-                    });
-                } else {
-                    calculateAndDisplayRoute(directionsService, directionsRenderer);
-                }
-            });
-        }
-
-        function calculateAndDisplayRoute(directionsService, directionsRenderer, currentLocation = null) {
-            const origen = currentLocation || document.getElementById("origen").value;
-            const destino = document.getElementById("destino").value;
-
-            const request = {
-                origin: origen,
-                destination: destino,
-                travelMode: google.maps.TravelMode.TRANSIT,
-                drivingOptions: {
-                    departureTime: new Date(),
-                    trafficModel: 'bestguess'
-                },
-            };
-
-            directionsService.route(request, (response, status) => {
-                if (status === "OK") {
-                    directionsRenderer.setDirections(response);
-                    showBusRoutes(response);
-                    showTripDetails(response);
-                } else {
-                    window.alert("No se encontró una ruta de autobús.");
-                }
-            });
-        }
-
-        function showBusRoutes(directionsResponse) {
-            const routes = directionsResponse.routes;
-            const buses = routes.flatMap(route => {
-                return route.legs.flatMap(leg => {
-                    return leg.steps.filter(step => {
-                        return step.travel_mode === "TRANSIT";
-                    }).map(step => {
-                        return {
-                            numero: step.transit.line.short_name,
-                            empresa: obtenerEmpresaTransporte(step.transit.line.short_name),
-                            estado: obtenerEstadoAutobus(step.transit.line.short_name)
-                        };
-                    });
-                });
-            });
-
-            const busRoutesDiv = document.getElementById("bus-routes");
-            busRoutesDiv.innerHTML = "<h3>Rutas de Autobús:</h3>";
-            if (buses.length > 0) {
-                const busesList = document.createElement("ul");
-                buses.forEach(bus => {
-                    const busItem = document.createElement("li");
-                    busItem.textContent = `${bus.numero} - ${bus.empresa} (${bus.estado})`;
-                    busesList.appendChild(busItem);
-                });
-
-                busRoutesDiv.appendChild(busesList);
-            } else {
-                busRoutesDiv.innerHTML += "<p>No se encontraron rutas de autobús.</p>";
-            }
-        }
-
-        function obtenerEmpresaTransporte(codigoLinea) {
-            // Simulación de consulta a la base de datos para obtener el nombre de la empresa
-            const empresasTransporte = {
-                "SO44": "El Chama",
-                "EO64": "La 9",
-                "RUTA B": "Metropolitano B",
-                "RUTA C": "Metropolitano C",
-                "ICR01": " Empresa de Transportes Once de Noviembre S.A.",
-                "ICR02": " Empresa de Transportes y Servicios Nuevo Reynoso S.A.",
-                "ICR06": " Empresa de Transportes 12 de Enero S.A.",
-                "IM01": " Ruta IM01 [Quilmaná - Imperial]",
-                "IO34": " La S2C",
-                "IO35": " Consorcio Briza",
-                "IO38": " Consorcio Briza S.A.",
-                "IO02": " Empresa de Transportes y Servicios San Antonio S.A.",
-                "NCR09": " Empresa de Transportes y Servicios El Retablo S.A.C.",
-                "NCR24": " Empresa de Transportes y Servicios 16 de Julio S.A.",
-                "NM07": " Empresa de Transportes y Servicios Rápido Ramón Castilla S.A.",
-                "NM39": " Empresa de Transportes 1ro de Julio S.A.",
-                "NM39A": " La C",
-                "NO98": " Empresa de Transportes Corazón de Jesús de San Diego S.A.",
-                "EO48": " La 48",
-                "IO44": " La VB",
-                "NCR06": " La 06",
-                "NM26": " Empresa de Transportes Miguel Grau S.A.",
-                "NCR04": " La B",
-                "NM42": " La 84",
-                "NO63A": " La 71",
-                "EO40": " Empresa de Transportes Salamanca Parral S.A.",
-                "NCR01": " Translima S.A.",
-                "NCR05": " Consorcio Haydee Alfaro Montufar S.A.C.",
-                "NCR10": " Empresa de Transportes Urbano Víctor Raúl Haya de La Torre S.R.L.",
-                "NCR13": " Empresa de Transportes Doce de Junio S.A.",
-                "NCR23": "",
-                "NM10": " Empresa de Transportes Impulsa Progreso S.A.C.",
-                "NM16": " La 6M",
-                "NM43A": " La C",
-                "NO74": "",
-                "NO03": " Transportes y Servicios Santa Cruz S.A.",
-                "NM01": " Empresa de Transportes Turismo e Inversiones Señor de La Soledad S.A.",
-                "NM02": " Empresa de Transportes Elpa Tours S.A.C.",
-                "NM31": " La B",
-                "NO36": "",
-                "NO40": "",
-                "NO45": " La C",
-                "NO49": "El Anconero",
-                "IO85": " La 87B",
-                "IM19": " Cooperativa de Servicios Especiales Transportes Sol y Mar Ltda.",
-                "IM20": " Servicio Interconectado de Transporte S.A.C.",
-                "ICR10": " Empresa de Transportes y Turismo California Siglo XXI S.A.C.",
-                "IO33": " La 9",
-                "SO05": " La 5",
-                "NM06": " La 49",
-                "NM12": " La 36",
-                "NM15": " Empresa de Transportes y Servicios El Retablo S.A.C.",
-                "NM38": " La A - La B",
-                "NO24": " La 24",
-                "SO14": " La 25",
-                "NM35": " La 60C",
-                "NM29": " La 29",
-                "EO35": " La 52T"
-                // Otros códigos de línea aquí...
-            };
-            return empresasTransporte[codigoLinea] || "Empresa no encontrada";
-        }
-
-        function obtenerEstadoAutobus(numeroLinea) {
-            const estadosPosibles = ["lleno", "con espacio"];
-            const estadoAleatorio = estadosPosibles[Math.floor(Math.random() * estadosPosibles.length)];
-            return estadoAleatorio;
-        }
-
-
-        function showTripDetails(directionsResponse) {
-            const leg = directionsResponse.routes[0].legs[0];
-            const detailsDiv = document.getElementById("trip-details");
-
-            const trafficDelay = leg.duration_in_traffic ? ` (+${leg.duration_in_traffic.text} con tráfico)` : "";
-            const arrivalTime = new Date(new Date().getTime() + leg.duration.value * 1000);
-
-            let walkingAndTransferDetails = "";
-
-            leg.steps.forEach((step, index) => {
-                if (step.travel_mode === "WALKING" && index < leg.steps.length - 1) {
-                    const nextStep = leg.steps[index + 1];
-                    if (nextStep.travel_mode === "TRANSIT" && nextStep.transit) {
-                        walkingAndTransferDetails += `
-                    <p>Caminar ${step.distance.text} hasta ${nextStep.transit.departure_stop.name} para subir al Bus de la linea ${nextStep.transit.line.short_name}</p>
-                `;
-                    }
-                }
-            });
-
-            detailsDiv.innerHTML = `
-        <h3>Detalles del Viaje:</h3>
-        <p><strong>Distancia:</strong> ${leg.distance.text}</p>
-        <p><strong>Duración:</strong> ${leg.duration.text}${trafficDelay}</p>
-        <p><strong>Hora de llegada estimada:</strong> ${arrivalTime.toLocaleTimeString('es-ES')}</p>
-        <p><strong>Origen:</strong> ${leg.start_address}</p>
-        <p><strong>Destino:</strong> ${leg.end_address}</p>
-        <p><strong>Tráfico:</strong> ${leg.duration_in_traffic ? 'Hay tráfico' : 'No hay tráfico'}</p>
-        <p><strong>Procede a:</strong> ${walkingAndTransferDetails}</p>
-    `;
-        }
-
-        // Llamada a la función para consulta de base de datos (simulada)
-        //consultarBaseDatos();
-    </script>
-
-    <script th:src="@{../js/jquery.js}"></script>
+	
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC32VsgEeKPGzCBDCFFgLaafZAvmvcvVOA&libraries=places"></script>
+ 
+  <script th:src="@{../js/scripts.js}"></script>
+  	<script th:src="@{../js/jquery.js}"></script>
     <script th:src="@{../js/bootstrap.min.js}"></script>
     <script th:src="@{../js/owl.carousel.min.js}"></script>
     <script th:src="@{../js/smoothscroll.js}"></script>

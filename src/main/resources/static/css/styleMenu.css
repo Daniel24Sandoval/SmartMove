@@ -1,0 +1,307 @@
+/* Variables CSS para modo claro y oscuro */
+:root {
+    --background-color: #f5f5f5;
+    --text-color: #333;
+    --card-background: #fff;
+    --card-header-background: #007bff;
+    --card-header-text: #fff;
+    --button-background: #007bff;
+    --button-hover-background: #0056b3;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 20px;
+}
+
+body.dark-mode {
+    --background-color: #333;
+    --text-color: #f5f5f5;
+    --card-background: #444;
+    --card-header-background: #0056b3;
+    --card-header-text: #f5f5f5;
+    --button-background: #0056b3;
+    --button-hover-background: #003d80;
+}
+
+.my-container {
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--card-background);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.my-search, .my-map-section, .my-route-details {
+    margin-bottom: 20px;
+}
+
+.my-card {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: none;
+    background-color: var(--card-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.my-card-header {
+    background-color: var(--card-header-background);
+    color: var(--card-header-text);
+    font-weight: bold;
+    padding: 15px;
+}
+
+.my-card-body {
+    background-color: var(--card-background);
+    padding: 20px;
+}
+
+.my-card-title {
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.my-map-container {
+    height: 500px;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #e9ecef;
+}
+
+.my-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.my-btn-primary {
+    background-color: var(--button-background);
+    color: #fff;
+}
+
+.my-btn-primary:hover {
+    background-color: var(--button-hover-background);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .my-card-header, .my-card-body, .my-btn {
+        text-align: center;
+    }
+
+    .my-input-group {
+        flex-direction: column;
+    }
+
+    .my-input-group .my-form-control {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.my-form-control {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    color: var(--text-color); /* Añadimos color del texto */
+}
+
+.my-form-check {
+    margin: 10px 0;
+}
+
+.my-form-check-label {
+    margin-left: 10px;
+}
+
+.my-form-check-input {
+    transform: scale(1.2);
+    margin-right: 10px;
+}
+
+.my-input-group {
+    display: flex;
+    align-items: center;
+}
+
+.my-input-group input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.my-input-group button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#trip-details, #bus-routes {
+    padding: 15px;
+    background-color: var(--card-background);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes para modo oscuro */
+body.dark-mode .my-form-control {
+    background-color: #555; /* Cambiamos el color de fondo del input en modo oscuro */
+    color: #ccc; /* Cambiamos el color del texto del input en modo oscuro */
+}
+
+body.dark-mode .my-card-body {
+    color: #f5f5f5; /* Cambiamos el color del texto del cuerpo de la tarjeta en modo oscuro */
+}
+
+body.dark-mode .my-card-header {
+    background-color: #003d80; /* Cambiamos el color de fondo del encabezado de la tarjeta en modo oscuro */
+    color: #f5f5f5; /* Cambiamos el color del texto del encabezado de la tarjeta en modo oscuro */
+}
+
+body.dark-mode .my-btn-primary {
+    background-color: #0056b3; /* Cambiamos el color del botón primario en modo oscuro */
+}
+
+body.dark-mode .my-btn-primary:hover {
+    background-color: #003d80; /* Cambiamos el color de fondo del botón primario al pasar el cursor en modo oscuro */
+}
+/* Ajustes para modo oscuro */
+body.dark-mode .my-card-body {
+    color: #f5f5f5; /* Cambiamos el color del texto del cuerpo de la tarjeta en modo oscuro */
+}
+
+body.dark-mode #trip-details, body.dark-mode #bus-routes {
+    color: #f5f5f5; /* Cambiamos el color del texto del detalle del viaje y rutas en modo oscuro */
+}
+/* Ajustes para modo claro */
+body:not(.dark-mode) .my-card-header, body:not(.dark-mode) .my-card-body {
+    color: #333; /* Cambiamos el color del texto del encabezado y cuerpo de la tarjeta en modo claro */
+}
+
+body:not(.dark-mode) #trip-details, body:not(.dark-mode) #bus-routes {
+    color: #333; /* Cambiamos el color del texto del detalle del viaje y rutas en modo claro */
+}
+/* Ajustes para modo claro */
+body:not(.dark-mode) .my-card-header,
+body:not(.dark-mode) .my-card-body,
+body:not(.dark-mode) #trip-details,
+body:not(.dark-mode) #bus-routes {
+    color: #333; /* Cambiamos el color del texto en modo claro */
+}
+
+/* Ajustes para modo oscuro */
+body.dark-mode .my-card-header,
+body.dark-mode .my-card-body,
+body.dark-mode #trip-details,
+body.dark-mode #bus-routes {
+    color: #f5f5f5; /* Cambiamos el color del texto en modo oscuro */
+}
+ /* Estilos para el contenedor de botones de autobús */
+.bus-buttons-container {
+    display: flex;
+    flex-direction: column; /* Mostrar los botones en una columna */
+}
+
+/* Estilos para los botones de ruta de autobús */
+.bus-button {
+    width: auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: var(--button-background); /* Utiliza las variables CSS definidas */
+    color: #fff; /* Color de texto */
+    margin-bottom: 10px; /* Espacio entre los botones */
+    display: flex;
+    align-items: center;
+}
+
+.bus-button:hover {
+    background-color: var(--button-hover-background); /* Cambia el color de fondo al pasar el ratón */
+}
+
+.selected-route {
+    background-color: var(--button-selected-background); /* Estilo para el botón seleccionado */
+    color: var(--button-selected-color); /* Cambiar el color del texto del botón seleccionado */
+}
+
+/* Estilos para el ícono de autobús */
+.bus-button i {
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+/* Estilos para el contenedor de botones de autobús */
+.bus-buttons-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Distribuir los botones en columnas y ajustar su tamaño */
+    gap: 10px; /* Espacio entre los botones */
+}
+/* Estilos para los botones de ruta de autobús */
+.bus-button {
+    width: auto;
+    height: auto; /* Permitir que la altura del botón se ajuste automáticamente */
+    min-width: 150px; /* Ancho mínimo del botón */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: var(--button-background); /* Utiliza las variables CSS definidas */
+    color: #fff; /* Color de texto */
+    margin-bottom: 10px; /* Espacio entre los botones */
+    white-space: normal; /* Permitir que el texto se divida en múltiples líneas */
+    overflow: hidden; /* Oculta cualquier texto que sobresalga del botón */
+    text-overflow: ellipsis; /* Muestra puntos suspensivos (...) si el texto es demasiado largo */
+}
+
+ 
+ 
+ 
+ .loader-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.8); /* Semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.recommended-route {
+    background-color: #40d664; /* Light green background */
+    border-left: 5px solid rgb(0, 128, 128); /* Darker green border */
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.bus-buttons-container {
+    margin-bottom: 20px;
+}
+
