@@ -240,29 +240,7 @@ function highlightSelectedRoute(selectedButton) {
     });
     selectedButton.classList.add("selected-route");
 }
-
-	$(document).ready(function() {
-    $('#formGuardarViaje').on('submit', function(event) {
-        // Prevenir el comportamiento predeterminado del formulario
-        event.preventDefault();
-
-        // Recopilar datos del formulario
-        var formData = $(this).serialize();
-
-        $.ajax({
-            url: '/saveRV', // URL del controlador
-            type: 'POST',
-            data: formData,
-            success: function(response) {
-                // No hacemos nada en caso de éxito
-            },
-            error: function(error) {
-                // Manejar errores de la solicitud AJAX
-                console.log(error);
-            }
-        });
-    });
-});
+ 
 	
 		function enviarIdRutaAlControlador(idRuta) {
 		    // Hacer una solicitud Ajax al controlador para enviar el ID de la ruta
