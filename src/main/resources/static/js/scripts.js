@@ -1,7 +1,6 @@
  		
  		  
- 		  
- 		  
+ 
  		  // Obtener la fecha actual
                             var fechaActual = new Date();
                             // Convertir la fecha a un formato legible
@@ -242,7 +241,29 @@ function highlightSelectedRoute(selectedButton) {
     selectedButton.classList.add("selected-route");
 }
 
-		
+	$(document).ready(function() {
+    $('#formGuardarViaje').on('submit', function(event) {
+        // Prevenir el comportamiento predeterminado del formulario
+        event.preventDefault();
+
+        // Recopilar datos del formulario
+        var formData = $(this).serialize();
+
+        $.ajax({
+            url: '/saveRV', // URL del controlador
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                // No hacemos nada en caso de éxito
+            },
+            error: function(error) {
+                // Manejar errores de la solicitud AJAX
+                console.log(error);
+            }
+        });
+    });
+});
+	
 		function enviarIdRutaAlControlador(idRuta) {
 		    // Hacer una solicitud Ajax al controlador para enviar el ID de la ruta
 		    $.ajax({
@@ -284,14 +305,16 @@ function highlightSelectedRoute(selectedButton) {
     const detallesUnidad = document.getElementById("detalles-unidad");
     detallesUnidad.innerHTML = `
         <h3>Detalles de la Unidad de Transporte</h3>
+        <p><strong>ID:</strong> ${unidad.id}</p>
         <p><strong>Placa:</strong> ${unidad.placa}</p>
         <p><strong>Estado:</strong> ${unidad.estado ? 'Lleno' : 'Con espacio'}</p>
         <p><strong>Conductor:</strong> ${unidad.nombreConductor}</p>
         <p><strong>Capacidad:</strong> ${unidad.capacidad}</p>
     `;
+      // Asignar los valores a los campos ocultos
+    document.getElementById("idUnidadTransporte").value = unidad.id;
 }
-
-
+ 
 		
     function obtenerEmpresaTransporte(codigoLinea) {
     // Esta función podría ser redefinida según las necesidades de tu aplicación
@@ -300,7 +323,7 @@ function highlightSelectedRoute(selectedButton) {
 }
 
         function obtenerEstadoAutobus(numeroLinea) {
-            const estadosPosibles = ["lleno", "con espacio"];
+            const estadosPosibles = ["con espacio"];
             const estadoAleatorio = estadosPosibles[Math.floor(Math.random() * estadosPosibles.length)];
             return estadoAleatorio;
         }
@@ -379,6 +402,31 @@ function showTripDetails(directionsResponse, routeIndex, container) {
         <p><strong>Tráfico:</strong> ${leg.duration_in_traffic ? 'Hay tráfico' : 'No hay tráfico'}</p>
     `;
     container.innerHTML += trafficInfo;
+    // Obtener la fecha y hora actuales en Perú
+const fechaHoraPeruActual = new Date().toLocaleString('es-PE', {
+    timeZone: 'America/Lima',
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+});
+  const currentDate = new Date();
+const formattedDate = currentDate.toISOString().split('T')[0]; // Obtener la fecha en formato 'YYYY-MM-DD'
+const formattedTime = currentDate.toTimeString().split(' ')[0]; // Obtener la hora en formato 'HH:MM:SS'
+
+const arrivalTimee = new Date(currentDate.getTime() + leg.duration.value * 1000);
+const formattedArrivalDate = arrivalTime.toISOString().split('T')[0]; // Obtener la fecha en formato 'YYYY-MM-DD'
+const formattedArrivalTime = arrivalTime.toTimeString().split(' ')[0]; // Obtener la hora en formato 'HH:MM:SS'
+
+    // Asignar los valores a los campos ocultos del viaje
+    document.getElementById("distancia").value = leg.distance.text;
+    document.getElementById("duracion").value = `${leg.duration.text}${trafficDelay}`;
+    document.getElementById("fechaHoraSalida").value = `${formattedDate} ${formattedTime}`;
+	document.getElementById("fechaHoraLlegada").value = `${formattedArrivalDate} ${formattedArrivalTime}`;
+    document.getElementById("origenn").value = leg.start_address;
+   document.getElementById("destinoo").value = leg.end_address;
+    document.getElementById("trafico").value = leg.duration_in_traffic ? 'Hay tráfico' : 'No hay tráfico';
+
 }
 
 // Evento de clic para cerrar el popup

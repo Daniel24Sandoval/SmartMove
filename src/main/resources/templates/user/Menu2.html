@@ -104,14 +104,27 @@
 	           <div class="popup-detalles">
 	               <div id="mapa-popup"></div>
 	               <div id="detalles-ruta">
-	                   <form id="guardar-viaje-form">
+	                   <form th:action="@{/user/saveRV}" method="post" id="guardar-viaje-form">
 	                        
 	                       <div id="detalles-viaje"></div>
 						   <div id="detalles-unidad"></div>
-
-	                       <button type="submit" class="guardar-viaje-btn">Guardar Viaje</button>
+						   <!-- Campos ocultos para los valores dinámicos -->
+						      <input type="hidden" id="idUnidadTransporte" name="idUnidadTransporte" />
+							  <!-- Campos ocultos para los detalles del viaje -->
+							  <input type="hidden" id="destinoo" name="destino" />
+							  <input type="hidden" id="distancia" name="distancia" />
+							  <input type="hidden" id="duracion" name="duracion" />
+							  <input type="hidden" id="fechaHoraLlegada" name="fechaHoraLlegada" />
+							  <input type="hidden" id="fechaHoraSalida" name="fechaHoraSalida" />
+							  <input type="hidden" id="origenn" name="origen" />
+							  <input type="hidden" id="trafico" name="trafico" />
+	                       <button id="btnGuardar"  type="submit" class="guardar-viaje-btn">Guardar Viaje</button>
+			 
 	                   </form>
 	               </div>
+				   <!-- Mensajes de estado -->
+				   <div id="mensajeCargando" style="display: none;">Guardando...</div>
+				   <div id="mensajeExito" style="display: none;"></div>
 	           </div>
 	       </div>
 	   </div>

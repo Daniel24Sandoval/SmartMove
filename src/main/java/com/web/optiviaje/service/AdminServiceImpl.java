@@ -11,13 +11,17 @@ import org.springframework.stereotype.Service;
 import com.web.optiviaje.model.EmpresaTransporte;
 import com.web.optiviaje.model.NLinea;
 import com.web.optiviaje.model.Paradero;
+import com.web.optiviaje.model.Ruta;
 import com.web.optiviaje.model.ServicioTransporte;
 import com.web.optiviaje.model.UnidadTransporte;
+import com.web.optiviaje.model.Viaje;
 import com.web.optiviaje.repository.ServicioTransporteDAO;
 import com.web.optiviaje.repository.UnidadTransporteDAO;
+import com.web.optiviaje.repository.ViajeDAO;
 import com.web.optiviaje.repository.EmpresaTransporteDAO;
 import com.web.optiviaje.repository.NLineaDAO;
 import com.web.optiviaje.repository.ParaderoDAO;
+import com.web.optiviaje.repository.RutaDAO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -31,7 +35,10 @@ public class AdminServiceImpl implements AdminService {
     private ParaderoDAO paraderoDAO;
     @Autowired
     private UnidadTransporteDAO transporteDAO;
-
+    @Autowired
+    private ViajeDAO viajeDAO;
+    @Autowired
+    private RutaDAO rutaDAO;
     @Override
     public ServicioTransporte save(ServicioTransporte servicioTransporte) {
         return servicioTransporteDAO.save(servicioTransporte);
@@ -201,4 +208,29 @@ public class AdminServiceImpl implements AdminService {
 	    }
 	    return null; // Manejar el caso en que no se encuentren unidades de transporte
 	}
+
+	@Override
+	public Ruta save(Ruta ruta) {
+		// TODO Auto-generated method stub
+		return rutaDAO.save(ruta);
+	}
+
+	@Override
+	public Viaje save(Viaje viaje) {
+		// TODO Auto-generated method stub
+		return viajeDAO.save(viaje);
+	}
+
+	@Override
+	public Optional<Viaje> findByUsuarioId(Integer id) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
+
+	@Override
+	public  UnidadTransporte findById(Integer idUnidadTransporte) {
+	    Optional<UnidadTransporte> optionalUnidadTransporte = transporteDAO.findById(idUnidadTransporte);
+	    return optionalUnidadTransporte.orElse(null);
+	}
+
 }

@@ -6,8 +6,10 @@ import java.util.Optional;
 import com.web.optiviaje.model.EmpresaTransporte;
 import com.web.optiviaje.model.NLinea;
 import com.web.optiviaje.model.Paradero;
+import com.web.optiviaje.model.Ruta;
 import com.web.optiviaje.model.ServicioTransporte;
 import com.web.optiviaje.model.UnidadTransporte;
+import com.web.optiviaje.model.Viaje;
 
 public interface AdminService {
 	//DECLARACION DE METODOS
@@ -49,5 +51,11 @@ public interface AdminService {
 		public List<UnidadTransporte> getutt(Integer id);
 		public Optional<UnidadTransporte> getut(Integer id);
 		public UnidadTransporte seleccionarUnidadTransporte(String idRuta);
-
+		public UnidadTransporte findById (Integer idruta);
+		
+		//RUTA
+		public Ruta save(Ruta ruta);
+		//VIAJES
+		public Viaje save(Viaje viaje);
+		public Optional<Viaje> findByUsuarioId(Integer id);
 }
