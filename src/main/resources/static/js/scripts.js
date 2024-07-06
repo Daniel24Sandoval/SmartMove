@@ -1,14 +1,19 @@
  		
  		  
- 
- 		  // Obtener la fecha actual
-                            var fechaActual = new Date();
-                            // Convertir la fecha a un formato legible
-                            var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                            var fechaFormateada = fechaActual.toLocaleDateString('es-ES', opcionesFecha);
+ // Obtener la fecha actual
+var fechaActual = new Date();
 
-                            // Mostrar la fecha en el mismo lugar
-                            document.getElementById("fecha_actual").innerText = fechaFormateada;
+// Convertir la fecha a un formato legible
+var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+var fechaFormateada = fechaActual.toLocaleDateString('es-ES', opcionesFecha);
+
+// Convertir la primera letra de cada palabra a mayúscula para el modo oración
+var fechaFormateadaOracion = fechaFormateada.toLowerCase().split(' ').map(function(palabra) {
+    return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+}).join(' ');
+
+// Mostrar la fecha en el mismo lugar
+document.getElementById("fecha_actual").innerText = fechaFormateadaOracion;
  		
  		
  		 let map;
@@ -185,15 +190,26 @@ function createBusButton(route, index, buses, directionsResponse) {
 
     return busButton;
 }
-
+ 
 function createRecommendedButton(route, index, buses, directionsResponse) {
     const recommendedButton = document.createElement("button");
     recommendedButton.classList.add("bus-button", "vertical-button", "recommended-route");
 
+    let estadoColor = buses[0].estado === 'Lleno' ? 'red' : 'black';
+
     if (buses.length > 1) {
-        recommendedButton.innerHTML = `<i class="fas fa-star"></i> Ruta Recomendada: ${buses[0].numero} - ${buses[0].empresa}<br>(${buses[0].estado})<br>Tiene ${buses.length - 1} transbordos.<br>Duración: ${buses[0].duracionText}`;
+        recommendedButton.innerHTML = `
+            <div style="margin-bottom: 10px;"><i class="fas fa-bus"></i> Ruta Recomendada: ${buses[0].numero} - ${buses[0].empresa}</div>
+            <div style="color: ${estadoColor}; margin-bottom: 10px;">(${buses[0].estado})</div>
+            <div style="margin-bottom: 10px;">Tiene ${buses.length - 1} transbordos.</div>
+            <div style="margin-bottom: 10px;">Duración: ${buses[0].duracionText}</div>
+        `;
     } else {
-        recommendedButton.innerHTML = `<i class="fas fa-star"></i> Ruta Recomendada: ${buses[0].numero} - ${buses[0].empresa}<br>(${buses[0].estado})<br>Duración: ${buses[0].duracionText}`;
+        recommendedButton.innerHTML = `
+            <div style="margin-bottom: 10px;"><i class="fas fa-bus"></i> Ruta Recomendada: ${buses[0].numero} - ${buses[0].empresa}</div>
+            <div style="color: ${estadoColor}; margin-bottom: 10px;">(${buses[0].estado})</div>
+            <div style="margin-bottom: 10px;">Duración: ${buses[0].duracionText}</div>
+        `;
     }
 
     recommendedButton.addEventListener("click", () => {
@@ -203,6 +219,32 @@ function createRecommendedButton(route, index, buses, directionsResponse) {
 
     return recommendedButton;
 }
+
+function createRecommendedButton(route, index, buses, directionsResponse) {
+    const recommendedButton = document.createElement("button");
+    recommendedButton.classList.add("bus-button", "vertical-button", "recommended-route");
+
+    let estadoColor = buses[0].estado === 'Lleno' ? 'red' : 'black';
+
+    if (buses.length > 1) {
+        recommendedButton.insertAdjacentHTML('beforeend', `<div><i class="fas fa-bus"></i> Ruta Recomendada: ${buses[0].numero} - ${buses[0].empresa}</div><br>`);
+        recommendedButton.insertAdjacentHTML('beforeend', `<div style="color: ${estadoColor}">(${buses[0].estado})</div><br>`);
+        recommendedButton.insertAdjacentHTML('beforeend', `<div>Tiene ${buses.length - 1} transbordos.</div><br>`);
+        recommendedButton.insertAdjacentHTML('beforeend', `<div>Duración: ${buses[0].duracionText}</div>`);
+    } else {
+        recommendedButton.insertAdjacentHTML('beforeend', `<div><i class="fas fa-bus"></i> Ruta Recomendada: ${buses[0].numero} - ${buses[0].empresa}</div><br>`);
+        recommendedButton.insertAdjacentHTML('beforeend', `<div style="color: ${estadoColor}">(${buses[0].estado})</div><br>`);
+        recommendedButton.insertAdjacentHTML('beforeend', `<div>Duración: ${buses[0].duracionText}</div>`);
+    }
+
+    recommendedButton.addEventListener("click", () => {
+        showPopup(route, index, buses, directionsResponse);
+        solicitarUnidadTransporte(buses[0].numero); // Llamar a la función para solicitar la unidad de transporte
+    });
+
+    return recommendedButton;
+}
+
 
 
 function showPopup(route, index, buses, directionsResponse) {
@@ -301,7 +343,7 @@ function highlightSelectedRoute(selectedButton) {
 }
 
         function obtenerEstadoAutobus(numeroLinea) {
-            const estadosPosibles = ["con espacio"];
+            const estadosPosibles = ["con espacio", "Lleno"];
             const estadoAleatorio = estadosPosibles[Math.floor(Math.random() * estadosPosibles.length)];
             return estadoAleatorio;
         }
@@ -354,7 +396,27 @@ function showTripDetails(directionsResponse, routeIndex, container) {
             }
         }
     });
+$(document).ready(function() {
+    $('#idDelFormulario').on('submit', function(event) {
+        event.preventDefault(); // Cancelar el envío del formulario
 
+        $.ajax({
+            type: 'POST',
+            url: '/user/saveRV',
+            data: $(this).serialize(), // Serializar los datos del formulario
+            success: function(response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+                // Mostrar un mensaje de éxito
+                alert('Se envió correctamente');
+            },
+            error: function(error) {
+                // Manejar errores
+                console.error(error);
+            }
+        });
+    });
+});
     // Construir el contenido de los detalles del viaje
     const tripDetailsContent = `
         <h3>Detalles del Viaje:</h3>
@@ -420,4 +482,15 @@ window.onclick = function(event) {
         hidePopup();
     }
 }
+
+
+
+// Guardar datos en el localStorage
+localStorage.setItem('selectedRouteIndex', JSON.stringify(selectedRouteIndex));
+
+// Recuperar datos del localStorage
+selectedRouteIndex = JSON.parse(localStorage.getItem('selectedRouteIndex')) || -1; // Use -1 as default value
+
+
+
 		

@@ -17,28 +17,29 @@
 			
             <div class="form-value">
 				
-                <form th:action="@{/usuario/save}" method="post" enctype="multipart/form-data">
+                <form th:action="@{/user/CRegistro}" method="post" enctype="multipart/form-data">
                     
                     <div class="inputbox">
                         <ion-icon name="text"></ion-icon>
-                        <input type="text" id="nombre" name="nombre" required>
+                        <input type="text" id="nombres" name="nombres" required>
                         <label for="">Nombre Completo</label>
                     </div>
  
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" id="correo" name="correo" required>
+                        <input type="email" id="correoElectronico" name="correoElectronico" required>
                         <label for="">Correo</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="contrasena" name="contrasena" required>
                         <label for="">Contraseña</label>
                         <input type="hidden" name="rol" value="User">
-                        <input type="hidden" name="estado" value="Activo">
-                        <input type="hidden" id="fechaC" name="fechaC" th:value="${T(java.time.LocalDate).now().toString()}" readonly>
+					    <input type="hidden" name="estado" value="true">          
+             		    <input type="hidden" id="fechaC" name="fechaC" th:value="${T(java.time.LocalDate).now().toString()}" readonly>
 
-                    </div>
+                    </div> 
+					
 
                     <button type="submit" class="btn btn-success">Guardar</button>
                      	

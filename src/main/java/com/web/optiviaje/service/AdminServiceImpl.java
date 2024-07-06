@@ -14,9 +14,11 @@ import com.web.optiviaje.model.Paradero;
 import com.web.optiviaje.model.Ruta;
 import com.web.optiviaje.model.ServicioTransporte;
 import com.web.optiviaje.model.UnidadTransporte;
+import com.web.optiviaje.model.Usuario;
 import com.web.optiviaje.model.Viaje;
 import com.web.optiviaje.repository.ServicioTransporteDAO;
 import com.web.optiviaje.repository.UnidadTransporteDAO;
+import com.web.optiviaje.repository.UsuarioDAO;
 import com.web.optiviaje.repository.ViajeDAO;
 import com.web.optiviaje.repository.EmpresaTransporteDAO;
 import com.web.optiviaje.repository.NLineaDAO;
@@ -39,6 +41,11 @@ public class AdminServiceImpl implements AdminService {
     private ViajeDAO viajeDAO;
     @Autowired
     private RutaDAO rutaDAO;
+    @Autowired
+    private UsuarioDAO usuarioDAO;
+    
+    
+    
     @Override
     public ServicioTransporte save(ServicioTransporte servicioTransporte) {
         return servicioTransporteDAO.save(servicioTransporte);
@@ -231,6 +238,52 @@ public class AdminServiceImpl implements AdminService {
 	public  UnidadTransporte findById(Integer idUnidadTransporte) {
 	    Optional<UnidadTransporte> optionalUnidadTransporte = transporteDAO.findById(idUnidadTransporte);
 	    return optionalUnidadTransporte.orElse(null);
+	}
+//METODOS DE USAURIO
+	@Override
+	public Usuario save(Usuario usuario) {
+		  
+		return usuarioDAO.save(usuario);
+	}
+
+	@Override
+	public Usuario update(Usuario usuario) {
+ 		return usuarioDAO.save(usuario);
+	}
+
+	@Override
+	public void deleteu(Integer id) {
+		usuarioDAO.deleteById(id);
+	}
+
+	@Override
+	public List<Usuario> findAllUsuario() {
+		// TODO Auto-generated method stub
+		return usuarioDAO.findAll();
+	}
+
+	@Override
+	public Optional<Usuario> getu(Integer id) {
+		// TODO Auto-generated method stub
+		return usuarioDAO.findById(id);
+	}
+
+	@Override
+	public Usuario find(String correoElectronico) {
+		// TODO Auto-generated method stub
+		return  usuarioDAO.findByCorreoElectronico(correoElectronico);
+	}
+
+	@Override
+	public List<Viaje> getU(Integer idUsuario) {
+		// TODO Auto-generated method stub
+		return  viajeDAO.findByusuarioId(idUsuario);
+	}
+
+	@Override
+	public List<UnidadTransporte> findUnidadesByLinea(NLinea linea) {
+		 
+		return  transporteDAO.findAllByNlinea_Id(linea.getId());
 	}
 
 }

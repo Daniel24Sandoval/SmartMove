@@ -1,113 +1,113 @@
+
+
+ <!-- Navigation -->
  
 
-  <!-- Navigation -->
-  
 
 
 
-
-  <!-- vamos a crear un div header -->
-  <div th:fragment="header">
-   <header>
-		 <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
-		    <div class="container">
-		    	<a class="navbar-brand" href="index.html"><div class="box">
-                <figure>
-                    <a href="#">
-						<div class="logo"><img th:src="@{../img/LEARNREDWhite.webp}"></div>
-                       
-                    </a>
-                </figure>
-            </div></a>
-		    	
-		      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-		        <span class="fa fa-bars"></span> Menu
-		      </button>
-		      <div class="collapse navbar-collapse" id="ftco-nav">
-		        <ul class="navbar-nav ml-auto mr-md-3">
-		        	<li class="nav-item">
-						  <a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a>
-						</li>
-						<li class="nav-item">
-						  <a href="#categoria" class="nav-link"><i class="fas fa-folder-open"></i> Categorias</a>
-						</li>
-						<li class="nav-item">
-						  <a href="#" class="nav-link"><i class="fas fa-star"></i> Favoritos</a>
-						</li>
-						<li class="nav-item">
-						  <a href="#" class="nav-link"><i class="fas fa-list"></i> Mi Lista</a>
-						</li>
-
-							         <li class="nav-item">
-					  <a href="#" class="nav-link"><i class="fas fa-bell"></i> Notificaciones</a>
-					</li>
-
-		         <li class="dropdown nav-item d-md-flex align-items-center">
-	  <a href="#" class="dropdown-toggle nav-link d-flex align-items-center justify-content-center icon-cart p-0" id="dropdown04" data-toggle="dropdown" aria-expanded="false">
-	    <i class="fa fa-user"></i>
-	    <b class="caret"></b>
-	  </a>
-	  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown04">
-	    <a href="#" class="dropdown-item">Lista de Deseos</a>
-	       <div class="dropdown-divider"></div>
-	    <a href="#" class="dropdown-item">Perfil</a>
-	    <div class="dropdown-divider"></div>
-	    <a th:href="@{/usuario/validaCreador}" class="dropdown-item">Modo Creador</a>
-	 <div class="dropdown-divider"></div>
-	    <a href="#" class="dropdown-item">Cerrar Sesion</a>
+ <!-- vamos a crear un div header -->
+ <div th:fragment="header">
+	<section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+	     <div class="container">
+	         <div class="navbar-header">
+	             <!-- LOGO TEXT HERE -->
+	             <img src="../img/Fondo Claro.png" alt="Logo" style="max-height: 100px; max-width: 100px;">
+	             <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	                 <span class="icon icon-bar"></span>
+	                 <span class="icon icon-bar"></span>
+	                 <span class="icon icon-bar"></span>
+	             </button>
+	         </div>
+	         <!-- MENU LINKS -->
+	         <div class="collapse navbar-collapse">
+	             <ul class="nav navbar-nav navbar-nav-first">
+	                 <li><a th:href="@{/user/Menu2}" class="smoothScroll">INICIO</a></li>
+	                 <li><a th:href="@{/user/Perfil}" class="smoothScroll">PERFIL</a></li>  
+	                 <li><a th:href="@{/user/histo}"class="smoothScroll">HISTORIAL DE VIAJES</a></li>
+	                 <li><a href="#testimonial" class="smoothScroll">PREFERENCIAS</a></li>
+	                 <li><a th:href="@{/user/logout}" class="smoothScroll">CERRAR SESION</a></li> 
+	             </ul>
+	         </div>
+	     </div>
+	 </section>
+ </div>
  
-	    
-	 
-	  </div>
-	</li>
 
-		        </ul>
-		      </div>
-		    </div>
-		  </nav>
-		 
-	 </header>
-  </div>
-  
-
-     
-
-      
-    <!-- Footer -->
-    <div th:fragment="footer">
-		<!--::::Pie de Pagina::::::-->
-    <footer class="pie-pagina">
-        <div class="grupo-1">
-            <div class="box">
-                <figure>
-                    <a href="#">
-                        
-                    </a>
-					<img th:src="@{../img/Fondo oscuro.png}" alt="Logo de SLee Dw">
-                </figure>
-            </div>
-            <div class="box">
-                <h2>SOBRE NOSOTROS</h2>
-                <p>Terminos y Condiciones</p>
-                <p>Contactanos</p>
-               <p>Privacidad</p>
-
-            </div>
-            <div class="box">
-                <h2>SIGUENOS</h2>
-                <div class="red-social">
-                    <a href="#" class="fa fa-facebook"></a>
-                    <a href="#" class="fa fa-instagram"></a>
-                    <a href="#" class="fa fa-twitter"></a>
-                    <a href="#" class="fa fa-youtube"></a>
-                </div>
-            </div>
-        </div>
-        <div class="grupo-2">
-            <small>&copy; 2023 <b>SV</b> - Todos los Derechos Reservados.</small>
-        </div>
-    </footer>
-	</div>
     
 
-  
+     
+   <!-- Footer -->
+   <div th:fragment="footer">
+	<!--::::Pie de Pagina::::::-->
+    <footer id="footer">
+         <div class="container">
+              <div class="row">
+
+                   <div class="col-md-4 col-sm-6">
+                        <div class="footer-info">
+                             <div class="section-title">
+                                  <h2>Sedes</h2>
+                             </div>
+                             <address>
+                                  <p>1800 dapibus a tortor pretium,<br> Integer nisl dui, ABC 12000</p>
+                             </address>
+
+                             <ul class="social-icon">
+                               
+                             </ul>
+
+                             <div class="copyright-text"> 
+                                  <p>Copyright &copy; 2018 Company</p>
+                                  <p>Design: <a rel="nofollow" href="http://templatemo.com" title="html5 templates" target="_parent">Template Mo</a></p>
+                                  <p>Distribution: <a href="https://themewagon.com/">ThemeWagon</a></p>
+                             </div>
+                        </div>
+                   </div>
+
+                   <div class="col-md-4 col-sm-6">
+                        <div class="footer-info">
+                             <div class="section-title">
+                                  <h2>Contactos</h2>
+                             </div>
+                             <address>
+                                  <p>+65 2244 1100, +66 1800 1100</p>
+                                  <p><a href="mailto:youremail.com">hello@youremail.co</a></p>
+                             </address>
+
+                             <div class="footer_menu">
+                                  <h2>Enlaces Rápidas</h2>
+                                  <ul>
+                                       <li><a href="#">Career</a></li>
+                                       <li><a href="#">Investor</a></li>
+                                       <li><a href="#">Terms & Conditions</a></li>
+                                       <li><a href="#">Refund Policy</a></li>
+                                  </ul>
+                             </div>
+                        </div>
+                   </div>
+
+                   <div class="col-md-4 col-sm-12">
+                        <div class="footer-info newsletter-form">
+                             <div class="section-title">
+                                  <h2>Inscríbase al boletín</h2>
+                             </div>
+                             <div>
+                                  <div class="form-group">
+                                       <form action="#" method="get">
+                                            <input type="email" class="form-control" placeholder="Introduce tu correo electrónico" name="email" id="email" required="">
+                                            <input type="submit" class="form-control" name="submit" id="form-submit" value="Enviar">
+                                       </form>
+                                       <span><sup>*</sup> Tenga en cuenta que  no enviamos spam a su correo electrónico.</span>
+                                  </div>
+                             </div>
+                        </div>
+                   </div>
+                   
+              </div>
+         </div>
+    </footer>
+</div>
+   
+
+ 

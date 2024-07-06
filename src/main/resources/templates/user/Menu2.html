@@ -35,32 +35,17 @@
             <span class="spinner-rotate"></span>
         </div>
     </section>
-    <!-- MENU -->
-    <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- LOGO TEXT HERE -->
-                <img src="../img/Fondo Claro.png" alt="Logo" style="max-height: 100px; max-width: 100px;">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                    <span class="icon icon-bar"></span>
-                </button>
-            </div>
-            <!-- MENU LINKS -->
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-nav-first">
-                    <li><a href="#top" class="smoothScroll">INICIO</a></li>
-                    <li><a href="#top" class="smoothScroll">PERFIL</a></li>
-                    <li><a th:href="@{/user/histo}"class="smoothScroll">HISTORIAL DE VIAJES</a></li>
-                    <li><a href="#testimonial" class="smoothScroll">PREFERENCIAS</a></li>
-                    <li><a href="#contact" class="smoothScroll">SOPORTE</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
+ 
+	<!-- MENU -->
+	<!-- INSERTAR div header -->
+			<div th:insert="~{user/Template_Admin.html :: header}"></div>
 <br><br><br><br>
-
+<div class="my-card mb-4">
+    <div class="my-card-body">
+        <div class="small text-muted" id="fecha_actual"></div>
+        <h3 class="my-card-title" th:text="'Bienvenido ' + ${session.usuario.nombres}">Bienvenido Daniel</h3>
+    </div>
+</div>
 <div class="my-container">
         <div class="my-search">
            <div class="my-card mb-4">
@@ -104,7 +89,7 @@
 	           <div class="popup-detalles">
 	               <div id="mapa-popup"></div>
 	               <div id="detalles-ruta">
-	                   <form th:action="@{/user/saveRV}" method="post" id="guardar-viaje-form">
+	                   <form th:action="@{/user/saveRV}" method="post" id="idDelFormulario">
 	                        
 	                       <div id="detalles-viaje"></div>
 						   <div id="detalles-unidad"></div>
@@ -118,6 +103,7 @@
 							  <input type="hidden" id="fechaHoraSalida" name="fechaHoraSalida" />
 							  <input type="hidden" id="origenn" name="origen" />
 							  <input type="hidden" id="trafico" name="trafico" />
+							  <input type="hidden" th:value="${session.usuario.id}" id="idUsuario" name="idUsuario" />
 	                       <button id="btnGuardar"  type="submit" class="guardar-viaje-btn">Guardar Viaje</button>
 			 
 	                   </form>

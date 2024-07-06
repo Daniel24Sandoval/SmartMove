@@ -1,0 +1,64 @@
+    
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+       
+     <title>Sistema de Rendimiento Escolar</title>
+        <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- CSS -->
+      <link rel="stylesheet" th:href="@{../css/templatemo-style.css}">
+      
+    </head>
+    <body>
+ 
+
+		<!-- INSERTAR div header -->
+		<div th:insert="~{user/Template_Admin.html :: header}"></div>
+
+
+     <!-- HOME -->
+ 
+     <!-- FEATURE -->
+ <section id="feature">
+        <div class="container">
+            <div class="row">
+               
+                <br>
+                <div class="col-md-8 col-sm-10">
+				 
+                    <div class="feature-thumb"> 
+						<h1><span class="fa fa-user-circle-o"></span> Perfil</h1>
+
+                       <h3 th:text="'Nombre: ' + ${usuario.nombres}"></h3>
+					   <h3 th:text="'Correo: ' + ${usuario.correoElectronico}"></h3>
+					   <h3 th:text="'Telefono: ' + ${usuario.numeroTelefono}"></h3>
+					   <form th:action="@{/user/update_user}" method="post" >
+						<button    type="submit"  >Editar Perfil</button>
+						</form>
+                        
+						
+                    </div>
+                    <br>
+					 
+                </div>
+ 
+            </div>
+        </div>
+    </section>
+
+ 
+
+     <!-- FOOTER -->
+
+	 <div th:insert="~{user/Template_Admin.html :: footer}"></div>
+
+     <!-- SCRIPTS -->
+     </body>
+</html>

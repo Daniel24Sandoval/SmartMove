@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -23,8 +23,13 @@ import org.json.JSONObject;
 import com.web.optiviaje.model.NLinea;
 import com.web.optiviaje.model.Ruta;
 import com.web.optiviaje.model.UnidadTransporte;
+import com.web.optiviaje.model.Usuario;
 import com.web.optiviaje.model.Viaje;
 import com.web.optiviaje.service.AdminService;
+
+import jakarta.servlet.http.HttpSession;
+
+ 
 
 
 @Controller
@@ -38,9 +43,24 @@ public class UserController {
 		return  "user/Landig";
 	}
 	
-	 @GetMapping("/login")
- public String login() {
-		return  "user/login";
+	@GetMapping("/login") 
+	public String login() {
+		return "user/login";
+	}
+	
+	
+	 @PostMapping("/loginUser")
+ public String login( @RequestParam String correoElectronico, @RequestParam String contrasena, 	Model model, HttpSession session ) {
+		 Usuario usuario = adminService.find(correoElectronico);
+		 if (usuario != null && usuario.getContrasena().equals(contrasena)) {
+		        session.setAttribute("usuario", usuario); // Almacenar el usuario en la sesión
+		        model.addAttribute("usuario", usuario);
+		        return "user/Menu2";
+		    } else {
+		        model.addAttribute("loginError", "Invalid username or password.");
+		        return "user/login";
+		    }
+	 
 	 }
 	
 	 @GetMapping("/Registro")
@@ -48,15 +68,31 @@ public class UserController {
 	 return  "user/Registro";
 	 }
 	 
+	 @PostMapping("/CRegistro")
+	 public String CRegistro(Usuario usuario) {
+		 	
+		 adminService.save(usuario);
+		 
+			return "user/login";
+		}
 	 
 	@GetMapping("Menu")
 	 public String Menu() {
 			 return "user/Menu";
 		 }
 	@GetMapping("Menu2")
-	 public String Menu2() {
-			 return "user/Menu2";
-		 }
+	public String Menu2(HttpSession session, Model model) {
+	    Usuario usuario = (Usuario) session.getAttribute("usuario"); // Obtener el usuario de la sesión
+	    if (usuario == null) {
+	        // Si no hay un usuario en la sesión, redirigir al usuario a la página de inicio de sesión
+	        return "redirect:/user/login";
+	    } else {
+	        // Si hay un usuario en la sesión, agregar el usuario al modelo y mostrar la página Menu2
+	        model.addAttribute("usuario", usuario);
+	        
+	        return "user/Menu2";
+	    }
+	}
 	// Método para generar una placa aleatoria
 	private String generarPlacaAleatoria() {
 	    String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -74,11 +110,12 @@ public class UserController {
 	}
 	
 	private final Object lock = new Object();
-
+///OBTENER ID DE RUTA
 	@PostMapping("recibirIdRuta")
 	@ResponseBody
 	public String recibirIdRuta(@RequestBody String json) {
 	    System.out.println("JSON recibido: " + json);
+
 	    String idRuta;
 	    try {
 	        JSONObject jsonObject = new JSONObject(json);
@@ -98,8 +135,26 @@ public class UserController {
 	        Optional<NLinea> lineaExistenteOpt = adminService.findByCodigoLinea(idRuta);
 	        if (lineaExistenteOpt.isPresent()) {
 	            System.out.println("La línea con el código " + idRuta + " ya existe.");
+
+	            NLinea lineaExistente = lineaExistenteOpt.get();
+	            List<UnidadTransporte> unidades = adminService.findUnidadesByLinea(lineaExistente);
+
+	            if (unidades.isEmpty()) {
+	                // Si la línea de ruta existente no tiene unidades de transporte, crear y guardar nuevas unidades
+	                for (int i = 0; i < 2; i++) {
+	                    UnidadTransporte unidadTransporte = new UnidadTransporte();
+	                    unidadTransporte.setNlinea(lineaExistente);
+	                    unidadTransporte.setNombreConductor("Default");
+	                    unidadTransporte.setCapacidad(50);
+	                    unidadTransporte.setPlaca(generarPlacaAleatoria());
+	                    adminService.save(unidadTransporte);
+	                }
+	                return "Se han creado nuevas unidades de transporte para la línea " + idRuta;
+	            }
+
 	            return "La línea con el código " + idRuta + " ya existe.";
 	        }
+
 	        NLinea nuevaLinea = new NLinea();
 	        nuevaLinea.setCodigoLinea(idRuta);
 	        try {
@@ -116,6 +171,7 @@ public class UserController {
 	            e.printStackTrace();
 	            return "Error al guardar la ruta: " + e.getMessage();
 	        }
+
 	        return "ID de ruta recibida con éxito: " + idRuta;
 	    }
 	}
@@ -143,30 +199,95 @@ public class UserController {
 	        return ResponseEntity.notFound().build();
 	    }
 	}
+	// Guardar el viaje
 	@PostMapping("/saveRV")
-	public ResponseEntity<Object> saveRV(@ModelAttribute Ruta ruta, @ModelAttribute Viaje viaje, @RequestParam("idUnidadTransporte") Integer idUnidadTransporte) {
+	public String saveRV(@ModelAttribute Usuario usuario, @ModelAttribute Ruta ruta, @ModelAttribute Viaje viaje,
+	        @RequestParam("idUnidadTransporte") Integer idUnidadTransporte, @RequestParam("idUsuario") Integer idUsuario) {
 	    // Buscar la unidad de transporte por su ID
 	    UnidadTransporte unidadTransporte = adminService.findById(idUnidadTransporte);
+	    Usuario usuarioGuardado = adminService.getu(idUsuario).get();
 
 	    // Asignar la unidad de transporte a la ruta
 	    ruta.setUnidadTransporte(unidadTransporte);
 
 	    // Guardar la ruta para obtener su ID
 	    Ruta rutaGuardada = adminService.save(ruta);
-
+	    // Asignar el usuario al viaje
+	    viaje.setUsuario(usuarioGuardado);
 	    // Asignar la ruta al viaje
 	    viaje.setRuta(rutaGuardada);
 
 	    // Guardar el viaje
 	    adminService.save(viaje);
 
-	    // Retornar un estado HTTP 200 OK sin contenido adicional
-	    return ResponseEntity.ok().build();
+	    // Redirigir al usuario a la página Menu2
+	    return "redirect:/user/Menu2";
 	}
 
 
 	@GetMapping("histo")
-	 public String histo() {
-			 return "user/histo";
-		 }
+	public String histo(HttpSession session, Model model) {
+	    Usuario usuario = (Usuario) session.getAttribute("usuario"); // Obtener el usuario de la sesión
+
+	    if (usuario == null) {
+	        // Si no hay un usuario en la sesión, redirigir al usuario a la página de inicio de sesión
+	        return "redirect:/user/login";
+	    } else {
+	        // Si hay un usuario en la sesión, agregar el usuario al modelo
+	        model.addAttribute("usuario", usuario);
+
+	        // Recuperar los viajes del usuario y agregarlos al modelo
+	        List<Viaje> viajes = adminService.getU(usuario.getId());
+	        model.addAttribute("viajes", viajes);
+
+	        return "user/histo";
+	    }
+	}
+	
+	// Perfil del usuario
+	@GetMapping("/Perfil")
+	public String Perfil(HttpSession session, Model model) {
+	    Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+	    if (usuario == null) {
+	        return "redirect:/user/login";
+	    } else {
+	    
+	            model.addAttribute("usuario", usuario);
+	       
+	        return "user/Perfil";
+	    }
+	}
+ 	 
+	  // actualizar usuario
+        @PostMapping("/update_user")
+		public String update_user(HttpSession session, Model model) {
+        	 Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+     	    if (usuario == null) {
+     	        return "redirect:/user/login";
+     	    } else {
+     	    
+     	            model.addAttribute("usuario", usuario);
+     	       
+     	        return "user/update_user";
+     	    }
+     	}
+        
+        ///ACCION DE UPDATE DE USER:
+        @PostMapping("/updateu")
+		public String updateu(Usuario usuario, HttpSession session) {
+			adminService.update(usuario);
+			session.setAttribute("usuario", usuario);
+			return "user/Perfil";
+		}
+        
+        
+        ///CERRAR SESION
+        @GetMapping("/logout")
+		public String logout(HttpSession session) {
+			session.invalidate(); // Invalidar la sesión
+			return "redirect:/user/login"; // Redirigir al usuario a la página de inicio de sesión
+		}
+	
 }

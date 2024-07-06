@@ -21,16 +21,16 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form th:action="@{/user/Menu2}" method="get">
+                <form th:action="@{/user/loginUser}" method="post">
                     <h2>Iniciar Sesión</h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input name="correo" type="email" required>
+                        <input name="correoElectronico" type="email" required>
                         <label for="">Correo</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input name="password" type="password" required>
+                        <input name="contrasena" type="password" required>
                         <label for="">Contraseña</label>
                     </div>
                     <div class="forget">

@@ -34,15 +34,20 @@ public class Viaje {
     @ManyToOne
     private Ruta ruta;
 
-    
+    public String getNLineaNombre() {
+        if (ruta != null) {
+        	
+        	NLinea nlinea = ruta.getUnidadTransporte().getNlinea();
+        	           
+        	return nlinea.getCodigoLinea();
+             
+            
+        }
+        return "Servicio no disponible";
+    }
     
     public Viaje() {
  	}
-
-
-
-
-
 
 	public Viaje(int id, String distancia, String duracion, LocalDateTime fechaHoraSalida,
 			LocalDateTime fechaHoraLlegada, String origen, String destino, String trafico) {
@@ -57,185 +62,93 @@ public class Viaje {
 		this.trafico = trafico;
 	}
 
-
-
-
-
-
 	public int getId() {
 		return id;
 	}
-
-
-
-
-
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-
-
-
-
 	public String getDistancia() {
 		return distancia;
 	}
-
-
-
-
-
 
 	public void setDistancia(String distancia) {
 		this.distancia = distancia;
 	}
 
-
-
-
-
-
 	public String getDuracion() {
 		return duracion;
 	}
-
-
-
-
-
 
 	public void setDuracion(String duracion) {
 		this.duracion = duracion;
 	}
 
-
-
-
-
-
 	public LocalDateTime getFechaHoraSalida() {
 		return fechaHoraSalida;
 	}
-
-
-
-
-
 
 	public void setFechaHoraSalida(LocalDateTime fechaHoraSalida) {
 		this.fechaHoraSalida = fechaHoraSalida;
 	}
 
-
-
-
-
-
 	public LocalDateTime getFechaHoraLlegada() {
 		return fechaHoraLlegada;
 	}
-
-
-
-
-
 
 	public void setFechaHoraLlegada(LocalDateTime fechaHoraLlegada) {
 		this.fechaHoraLlegada = fechaHoraLlegada;
 	}
 
-
-
-
-
-
 	public String getOrigen() {
 		return origen;
 	}
-
-
-
-
-
 
 	public void setOrigen(String origen) {
 		this.origen = origen;
 	}
 
-
-
-
-
-
 	public String getDestino() {
 		return destino;
 	}
-
-
-
-
-
 
 	public void setDestino(String destino) {
 		this.destino = destino;
 	}
 
-
-
-
-
-
 	public String getTrafico() {
 		return trafico;
 	}
-
-
-
-
-
 
 	public void setTrafico(String trafico) {
 		this.trafico = trafico;
 	}
 
-
-
-
-
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
-
-
-
-
-
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
-
-
-
-
-
 	public Ruta getRuta() {
 		return ruta;
 	}
 
-
-
-
-
-
 	public void setRuta(Ruta ruta) {
 		this.ruta = ruta;
 	}
-	  
+
+
+
+
+
+ 
+
+
+ 
     
 }

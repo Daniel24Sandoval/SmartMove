@@ -9,6 +9,7 @@ import com.web.optiviaje.model.Paradero;
 import com.web.optiviaje.model.Ruta;
 import com.web.optiviaje.model.ServicioTransporte;
 import com.web.optiviaje.model.UnidadTransporte;
+import com.web.optiviaje.model.Usuario;
 import com.web.optiviaje.model.Viaje;
 
 public interface AdminService {
@@ -52,10 +53,29 @@ public interface AdminService {
 		public Optional<UnidadTransporte> getut(Integer id);
 		public UnidadTransporte seleccionarUnidadTransporte(String idRuta);
 		public UnidadTransporte findById (Integer idruta);
+		//List<UnidadTransporte> unidades = adminService.findUnidadesByLinea(lineaExistente); esto es un servicio
+		public List<UnidadTransporte> findUnidadesByLinea(NLinea linea);
+		
 		
 		//RUTA
 		public Ruta save(Ruta ruta);
 		//VIAJES
 		public Viaje save(Viaje viaje);
 		public Optional<Viaje> findByUsuarioId(Integer id);
+		
+		//SERVICIOS DE USUARIO
+		public Usuario save(Usuario usuario);
+		public Usuario update(Usuario usuario);
+		public void deleteu(Integer id);
+		public List<Usuario> findAllUsuario();
+		public Optional<Usuario> getu(Integer id);
+		public Usuario find(String correoElectronico);
+		
+		///VIAJES
+ 
+		public List<Viaje> getU(Integer idUsuario);
+ 
+		
+		 
+		
 }
