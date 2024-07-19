@@ -13,10 +13,12 @@ import com.web.optiviaje.model.NLinea;
 import com.web.optiviaje.model.Paradero;
 import com.web.optiviaje.model.Ruta;
 import com.web.optiviaje.model.ServicioTransporte;
+import com.web.optiviaje.model.Tutorial;
 import com.web.optiviaje.model.UnidadTransporte;
 import com.web.optiviaje.model.Usuario;
 import com.web.optiviaje.model.Viaje;
 import com.web.optiviaje.repository.ServicioTransporteDAO;
+import com.web.optiviaje.repository.TutorialDAO;
 import com.web.optiviaje.repository.UnidadTransporteDAO;
 import com.web.optiviaje.repository.UsuarioDAO;
 import com.web.optiviaje.repository.ViajeDAO;
@@ -43,7 +45,8 @@ public class AdminServiceImpl implements AdminService {
     private RutaDAO rutaDAO;
     @Autowired
     private UsuarioDAO usuarioDAO;
-    
+    @Autowired
+    private TutorialDAO tutorialDAO;
     
     
     @Override
@@ -284,6 +287,18 @@ public class AdminServiceImpl implements AdminService {
 	public List<UnidadTransporte> findUnidadesByLinea(NLinea linea) {
 		 
 		return  transporteDAO.findAllByNlinea_Id(linea.getId());
+	}
+
+	@Override
+	public Tutorial save(Tutorial tutorial) {
+		// TODO Auto-generated method stub
+		return tutorialDAO.save(tutorial);
+	}
+
+	@Override
+	public List<Tutorial> getttodouser(String idus) {
+		// TODO Auto-generated method stub
+		return tutorialDAO.findAllByTitulo(idus);
 	}
 
 }

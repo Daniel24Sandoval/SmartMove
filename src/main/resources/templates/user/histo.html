@@ -55,17 +55,29 @@
                             <th>Linea de Bus</th>
                         </tr>
                     </thead>
-						 <tbody>
-						    <tr th:each="viaje : ${viajes}">
-						        <td th:text="${viaje.id}"></td>
-						        <td th:text="${viaje.fechaHoraLlegada}"></td>
-						        <td th:text="${viaje.origen}"></td>
-						        <td th:text="${viaje.destino}"></td>
-						        <td th:text="${viaje.duracion}"></td>
-						        <td th:text="${viaje.distancia}"></td>
-						        <td th:text="${viaje.getNLineaNombre}"></td>
-						    </tr>
-						</tbody>
+					<tbody>
+					    <tr th:each="viaje : ${viajes}">
+					        <form th:action="@{/user/Menu3}" method="post">
+					            <td th:text="${viaje.id}"></td>
+					            <td th:text="${viaje.fechaHoraLlegada}"></td>
+					            <td th:text="${viaje.origen}"></td>
+					            <td th:text="${viaje.destino}"></td>
+					            <td th:text="${viaje.duracion}"></td>
+					            <td th:text="${viaje.distancia}"></td>
+					            <td th:text="${viaje.getNLineaNombre}"></td>
+					            <td>
+					                <input type="hidden" name="origen" th:value="${viaje.origen}" />
+					            </td>
+					            <td>
+					                <input type="hidden" name="destino" th:value="${viaje.destino}" />
+					            </td>
+					            <!-- agregar botón para obtener el origen y destino en el mapa, se obtiene origen y destino nomás -->
+					            <td>
+					                <button style="width: auto;" class="btn btn-primary" type="submit">Buscar Ruta</button>
+					            </td>
+					        </form>
+					    </tr>
+					</tbody>
                 </table>
             </div>
         </div>

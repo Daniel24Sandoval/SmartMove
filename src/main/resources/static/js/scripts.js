@@ -417,6 +417,28 @@ $(document).ready(function() {
         });
     });
 });
+ 
+$(document).ready(function() {
+    $('#idRutaGuardada').on('submit', function(event) {
+        event.preventDefault(); // Cancelar el envío del formulario
+
+        $.ajax({
+            type: 'POST',
+            url: '/user/GuardarRutaa',
+            data: $(this).serialize(), // Serializar los datos del formulario
+            success: function(response) {
+                // Manejar la respuesta del servidor
+                console.log(response);
+                // Mostrar un mensaje de éxito
+                alert('Se Guardo ruta correctamente');
+            },
+            error: function(error) {
+                // Manejar errores
+                console.error(error);
+            }
+        });
+    });
+});
     // Construir el contenido de los detalles del viaje
     const tripDetailsContent = `
         <h3>Detalles del Viaje:</h3>

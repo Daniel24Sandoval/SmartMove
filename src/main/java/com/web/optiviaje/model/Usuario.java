@@ -19,6 +19,7 @@ public class Usuario {
 	    private String correoElectronico;
 	    private String contrasena;
 	    private int numeroTelefono;
+	    private int rol; //1=Administrador, 2=Cliente
 	    private boolean estado;
 
 	   //MAPEAMOS NUESTRAS VARIABLE HACIA OTRAS CLASES QUE COMPARTE RELACION 
@@ -46,84 +47,115 @@ public class Usuario {
 	    	
 		}
 	    //CONSTRUCTOR LLENO:
-		public Usuario(int id, String nombres, String correoElectronico, String contrasena, int numeroTelefono,
-				boolean estado) {
-			super();
-			this.id = id;
-			this.nombres = nombres;
-			this.correoElectronico = correoElectronico;
-			this.contrasena = contrasena;
-			this.numeroTelefono = numeroTelefono;
-			this.estado = estado;
-		}
-		public int getId() {
-			return id;
-		}
-		public void setId(int id) {
-			this.id = id;
-		}
-		public String getNombres() {
-			return nombres;
-		}
-		public void setNombres(String nombres) {
-			this.nombres = nombres;
-		}
-		public String getCorreoElectronico() {
-			return correoElectronico;
-		}
-		public void setCorreoElectronico(String correoElectronico) {
-			this.correoElectronico = correoElectronico;
-		}
-		public String getContrasena() {
-			return contrasena;
-		}
-		public void setContrasena(String contrasena) {
-			this.contrasena = contrasena;
-		}
-		public int getNumeroTelefono() {
-			return numeroTelefono;
-		}
-		public void setNumeroTelefono(int numeroTelefono) {
-			this.numeroTelefono = numeroTelefono;
-		}
-		public boolean isEstado() {
-			return estado;
-		}
-		public void setEstado(boolean estado) {
-			this.estado = estado;
-		}
-		public List<PreguntaFrecuente> getPreguntaFrecuente() {
-			return PreguntaFrecuente;
-		}
-		public void setPreguntaFrecuente(List<PreguntaFrecuente> preguntaFrecuente) {
-			PreguntaFrecuente = preguntaFrecuente;
-		}
-		public List<Notificacion> getNotificacion() {
-			return notificacion;
-		}
-		public void setNotificacion(List<Notificacion> notificacion) {
-			this.notificacion = notificacion;
-		}
-		public List<Preferencia> getPreferencia() {
-			return preferencia;
-		}
-		public void setPreferencia(List<Preferencia> preferencia) {
-			this.preferencia = preferencia;
-		}
-		public List<PreguntaFrecuente> getPreguntaFrecuentes() {
-			return preguntaFrecuentes;
-		}
-		public void setPreguntaFrecuentes(List<PreguntaFrecuente> preguntaFrecuentes) {
-			this.preguntaFrecuentes = preguntaFrecuentes;
-		}
-		public List<Viaje> getViaje() {
-			return viaje;
-		}
-		public void setViaje(List<Viaje> viaje) {
-			this.viaje = viaje;
-		}
-		
-	 
+
+	public Usuario(int id, String nombres, String correoElectronico, String contrasena, int numeroTelefono, int rol,
+			boolean estado) {
+		super();
+		this.id = id;
+		this.nombres = nombres;
+		this.correoElectronico = correoElectronico;
+		this.contrasena = contrasena;
+		this.numeroTelefono = numeroTelefono;
+		this.rol = rol;
+		this.estado = estado;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
+
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
+	public int getNumeroTelefono() {
+		return numeroTelefono;
+	}
+
+	public void setNumeroTelefono(int numeroTelefono) {
+		this.numeroTelefono = numeroTelefono;
+	}
+
+	public int getRol() {
+		return rol;
+	}
+
+	public void setRol(int rol) {
+		this.rol = rol;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
+	public List<PreguntaFrecuente> getPreguntaFrecuente() {
+		return PreguntaFrecuente;
+	}
+
+	public void setPreguntaFrecuente(List<PreguntaFrecuente> preguntaFrecuente) {
+		PreguntaFrecuente = preguntaFrecuente;
+	}
+
+	public List<Notificacion> getNotificacion() {
+		return notificacion;
+	}
+
+	public void setNotificacion(List<Notificacion> notificacion) {
+		this.notificacion = notificacion;
+	}
+
+	public List<Preferencia> getPreferencia() {
+		return preferencia;
+	}
+
+	public void setPreferencia(List<Preferencia> preferencia) {
+		this.preferencia = preferencia;
+	}
+
+	public List<PreguntaFrecuente> getPreguntaFrecuentes() {
+		return preguntaFrecuentes;
+	}
+
+	public void setPreguntaFrecuentes(List<PreguntaFrecuente> preguntaFrecuentes) {
+		this.preguntaFrecuentes = preguntaFrecuentes;
+	}
+
+	public List<Viaje> getViaje() {
+		return viaje;
+	}
+
+	public void setViaje(List<Viaje> viaje) {
+		this.viaje = viaje;
+	}
+		 
 	    
 	    
 }

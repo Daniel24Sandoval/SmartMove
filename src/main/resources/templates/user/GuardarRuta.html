@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Smotve</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" th:href="@{../css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{../css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.carousel.css}">
+    <link rel="stylesheet" th:href="@{../css/owl.theme.default.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/templatemo-style.css}">
+    <link rel="stylesheet" th:href="@{/css/Formulario_style.css}">
+	<link rel="stylesheet" th:href="@{/css/styleMenu.css}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+     
+</head>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC32VsgEeKPGzCBDCFFgLaafZAvmvcvVOA&libraries=places"></script>
+
+<body onload="initMap()">
+    <!-- PRE LOADER -->
+    <section class="preloader">
+        <div class="spinner">
+            <span class="spinner-rotate"></span>
+        </div>
+    </section>
+ 
+	<!-- MENU -->
+	<!-- INSERTAR div header -->
+			<div th:insert="~{user/Template_Admin.html :: header}"></div>
+<br><br><br><br>
+<div class="my-card mb-4">
+    <div class="my-card-body">
+        <div class="small text-muted" id="fecha_actual"></div>
+        <h3 class="my-card-title" th:text="'Hola ' + ${session.usuario.nombres}+', estan son tus rutas favoritas ' "></h3>
+    </div>
+</div>
+<!-- Mostara Ruta Favorita -->
+<section id="historial-viajes" class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-4">RUTAS FAVORITAS</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+
+                        <th>Origen</th>
+                        <th>Destino</th>
+
+                    </tr>
+                </thead>
+				<tbody>
+				    <tr th:each="tutorial : ${tutorial}">
+				        <form th:action="@{/user/Menu3}" method="post">
+				            <td th:text="${tutorial.contenido}"></td>
+				            <td th:text="${tutorial.descripcion}"></td>
+
+				            <td>
+				                <input type="hidden" name="origen" th:value="${tutorial.contenido}" />
+				            </td>
+				            <td>
+				                <input type="hidden" name="destino" th:value="${tutorial.descripcion}" />
+				            </td>
+				            <!-- agregar botón para obtener el origen y destino en el mapa, se obtiene origen y destino nomás -->
+				            <td>
+				                <button style="width: auto;" class="btn btn-primary" type="submit">Buscar Ruta</button>
+				            </td>
+				        </form>
+				    </tr>
+				</tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+	<br><br><br><br>
+    <!-- FOOTER -->
+	<div th:insert="~{admin/Template_Admin.html :: footer}"></div>
+
+    <!-- SCRIPTS -->
+	
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC32VsgEeKPGzCBDCFFgLaafZAvmvcvVOA&libraries=places"></script>
+ 
+  <script th:src="@{../js/scripts.js}"></script>
+  	<script th:src="@{../js/jquery.js}"></script>
+    <script th:src="@{../js/bootstrap.min.js}"></script>
+    <script th:src="@{../js/owl.carousel.min.js}"></script>
+    <script th:src="@{../js/smoothscroll.js}"></script>
+    <script th:src="@{../js/custom.js}"></script>
+</body>
+
+</html>

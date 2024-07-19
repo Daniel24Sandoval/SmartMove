@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import com.web.optiviaje.model.NLinea;
 import com.web.optiviaje.model.Ruta;
+import com.web.optiviaje.model.Tutorial;
 import com.web.optiviaje.model.UnidadTransporte;
 import com.web.optiviaje.model.Usuario;
 import com.web.optiviaje.model.Viaje;
@@ -49,19 +50,31 @@ public class UserController {
 	}
 	
 	
-	 @PostMapping("/loginUser")
- public String login( @RequestParam String correoElectronico, @RequestParam String contrasena, 	Model model, HttpSession session ) {
-		 Usuario usuario = adminService.find(correoElectronico);
-		 if (usuario != null && usuario.getContrasena().equals(contrasena)) {
-		        session.setAttribute("usuario", usuario); // Almacenar el usuario en la sesión
-		        model.addAttribute("usuario", usuario);
-		        return "user/Menu2";
-		    } else {
-		        model.addAttribute("loginError", "Invalid username or password.");
-		        return "user/login";
-		    }
-	 
-	 }
+	@PostMapping("/loginUser")
+	public String login(@RequestParam String correoElectronico, @RequestParam String contrasena, Model model, HttpSession session) {
+	    Usuario usuario = adminService.find(correoElectronico);
+
+	    if (usuario != null && usuario.getContrasena().equals(contrasena)) {
+	        session.setAttribute("usuario", usuario); // Almacenar el usuario en la sesión
+	        model.addAttribute("usuario", usuario);
+
+	        // Comprobar el rol del usuario
+	        if (usuario.getRol() == 1) {
+	            // Rol de administrador
+	            return "admin/Menu_admin";
+	        } else if (usuario.getRol() == 2) {
+	            // Rol de usuario
+	            return "user/Menu2";
+	        } else {
+	            // Rol desconocido
+	            model.addAttribute("loginError", "Unknown role.");
+	            return "user/login";
+	        }
+	    } else {
+	        model.addAttribute("loginError", "Invalid username or password.");
+	        return "user/login";
+	    }
+	}
 	
 	 @GetMapping("/Registro")
 	 public String Registro() {
@@ -91,6 +104,68 @@ public class UserController {
 	        model.addAttribute("usuario", usuario);
 	        
 	        return "user/Menu2";
+	    }
+	}
+	
+
+	
+	@PostMapping("Menu3")
+	public String Menu3(HttpSession session, Model model, @RequestParam("origen") String origen, @RequestParam("destino") String destino) {
+	    Usuario usuario = (Usuario) session.getAttribute("usuario"); // Obtener el usuario de la sesión
+	    if (usuario == null) {
+	        // Si no hay un usuario en la sesión, redirigir al usuario a la página de inicio de sesión
+	        return "redirect:/user/login";
+	    } else {
+	        // Si hay un usuario en la sesión, agregar el usuario al modelo y mostrar la página Menu3
+	        model.addAttribute("usuario", usuario);
+	        model.addAttribute("origen", origen);
+	        model.addAttribute("destino", destino);
+	        return "user/Menu3";
+	    }
+	}
+
+	//MENU DE GUARDADO DE RUTA
+	@PostMapping("GuardarRutaa")
+	public String GuardarRutaa(HttpSession session, Model model, @RequestParam("origen") String origen, @RequestParam("destino") String destino) {
+	    Usuario usuario = (Usuario) session.getAttribute("usuario"); // Obtener el usuario de la sesión
+	    if (usuario == null) {
+	        // Si no hay un usuario en la sesión, redirigir al usuario a la página de inicio de sesión
+	        return "redirect:/user/login";
+	    } else {
+	        // Si hay un usuario en la sesión, agregar el usuario al modelo y mostrar la página Menu3
+	        model.addAttribute("usuario", usuario);
+	      //Contenido=origen Destino=descripcion titulo=idus
+	        Tutorial tutorial = new Tutorial();
+	        String idus = usuario.getId()+"";
+	        tutorial.setContenido(origen);
+	        tutorial.setDescripcion(destino);
+	        tutorial.setTitulo(idus);
+	        adminService.save(tutorial);
+	        
+	        
+	        return "user/Menu2";
+	    }
+	}
+	//MENU DE GUARDADO DE RUTA
+	@GetMapping("GuardarRuta")
+	public String GuardarRuta(HttpSession session, Model model, Model tutorial) {
+	    Usuario usuario = (Usuario) session.getAttribute("usuario"); // Obtener el usuario de la sesión
+	    if (usuario == null) {
+	        // Si no hay un usuario en la sesión, redirigir al usuario a la página de inicio de sesión
+	        return "redirect:/user/login";
+	    } else {
+	        // Si hay un usuario en la sesión, agregar el usuario al modelo y mostrar la página Menu3
+	        model.addAttribute("usuario", usuario);
+	      //Contenido=origen Destino=descripcion titulo=idus
+
+	        String idus = usuario.getId()+"";
+		      //Contenido=origen Destino=descripcion titulo=idus
+
+            List<Tutorial> tutoriall = adminService.getttodouser(idus);
+            tutorial.addAttribute("tutorial", tutoriall);
+	        
+	        
+	        return "user/GuardarRuta";
 	    }
 	}
 	// Método para generar una placa aleatoria

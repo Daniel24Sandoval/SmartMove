@@ -43,33 +43,29 @@
 <div class="my-card mb-4">
     <div class="my-card-body">
         <div class="small text-muted" id="fecha_actual"></div>
-        <h3 class="my-card-title" th:text="'Bienvenido ' + ${session.usuario.nombres}">Bienvenido Daniel</h3>
+        <h3 class="my-card-title" th:text="'Hola ' + ${session.usuario.nombres}"></h3>
     </div>
 </div>
 <div class="my-container">
         <div class="my-search">
            <div class="my-card mb-4">
                <div class="my-card-header">Generador de rutas</div>
-			   <form id="idRutaGuardada" th:action="@{/user/GuardarRutaa}" method="post">
                <div class="my-card-body">
                    <div>
-                       <input id="origen" name="origen" placeholder="Ingrese el origen" class="my-form-control" type="text" />
+					<input id="origen" placeholder="Ingrese el origen" class="my-form-control" th:value="${origen}" />
                    </div>
-                   <br>
-                   <div class="my-form-check">
-                       <input name="origen" class="my-form-check-input" type="checkbox" id="useCurrentLocation">
-                       <label class="my-form-check-label" for="useCurrentLocation">
-                           Usar mi ubicación actual
-                       </label>
-                   </div>
-                   <br>
+                    <br>	
+					<div class="my-form-check" style="display: none;">
+					    <input name="origen" class="my-form-check-input" type="checkbox" id="useCurrentLocation">
+					    <label class="my-form-check-label" for="useCurrentLocation">
+					        Usar mi ubicación actual
+					    </label>
+					</div>
                    <div class="my-input-group">
-                       <input id="destino"name="destino" placeholder="Ingrese el destino" class="my-form-control" type="text" />
+					<input id="destino" placeholder="Ingrese el destino" class="my-form-control" th:value="${destino}" />
                        <button id="buscar" class="my-btn my-btn-primary" type="button">Buscar</button>
                    </div>
                </div>
-			   <button style="width: auto;" class="btn btn-primary" type="submit">Guardar Ruta como Favorita</button>
-			   </form>
            </div>
        </div>
 	   <div id="loader-container" class="loader-container" style="display: none;">
@@ -146,7 +142,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC32VsgEeKPGzCBDCFFgLaafZAvmvcvVOA&libraries=places"></script>
  
   <script th:src="@{../js/scripts.js}"></script>
-  <script th:src="@{../js/sv.js}"></script>
   	<script th:src="@{../js/jquery.js}"></script>
     <script th:src="@{../js/bootstrap.min.js}"></script>
     <script th:src="@{../js/owl.carousel.min.js}"></script>

@@ -8,6 +8,7 @@ import com.web.optiviaje.model.NLinea;
 import com.web.optiviaje.model.Paradero;
 import com.web.optiviaje.model.Ruta;
 import com.web.optiviaje.model.ServicioTransporte;
+import com.web.optiviaje.model.Tutorial;
 import com.web.optiviaje.model.UnidadTransporte;
 import com.web.optiviaje.model.Usuario;
 import com.web.optiviaje.model.Viaje;
@@ -76,6 +77,8 @@ public interface AdminService {
 		public List<Viaje> getU(Integer idUsuario);
  
 		
-		 
+		 //SERVICIO DE TUTORIAL
+		public Tutorial save(Tutorial tutorial);
+		public List<Tutorial> getttodouser(String idus); //Contenido=origen Destino=descripcion titulo=idus
 		
 }
